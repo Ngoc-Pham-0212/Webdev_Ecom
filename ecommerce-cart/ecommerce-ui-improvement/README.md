@@ -37,11 +37,11 @@ Dự án thực hiện khảo sát cấu trúc, chức năng và trải nghiệm
 ## 6. Cải tiến đã thực hiện
 - **Vấn đề ban đầu của website:**
   - Ngăn kéo giỏ hàng hiện tại chỉ mang tính liệt kê thụ động, thiếu tính linh hoạt: Người dùng muốn đổi kích cỡ/màu sắc phải xóa hẳn món đồ và quay lại trang chi tiết sản phẩm để chọn lại từ đầu.
-  - Bỏ lỡ cơ hội bán kèm: Chưa có thanh báo hiệu ngưỡng Freeship và chưa tận dụng các món phụ kiện giá nhỏ (như patch dán) để thúc đẩy tăng giá trị giỏ hàng trung bình.
+  - Bỏ lỡ cơ hội bán kèm: Chưa có thanh báo hiệu ngưỡng Freeship và chưa tận dụng các món phụ kiện giá nhỏ để thúc đẩy tăng giá trị giỏ hàng trung bình.
 - **Giải pháp và thay đổi đã thực hiện:**
   - Thiết kế lại bố cục Slide-out Cart thành 5 khối chức năng liền mạch: Header cố định -> Thanh Freeship Banner -> Body cuộn độc lập -> Khối Cross-sell phụ kiện -> Footer cố định chốt tổng tiền và CTA thanh toán.
   - Tích hợp Dropdown thay đổi Size S/M/L/XL ngay tại từng thẻ sản phẩm trong giỏ.
-  - Định dạng chuẩn tiền tệ Việt Nam (VND Localization) có dấu chấm phân cách hàng nghìn rõ ràng.
+  - Định dạng chuẩn tiền tệ Việt Nam có dấu chấm phân cách hàng nghìn rõ ràng.
 
 ## 7. Hỗ trợ từ AI
 - **Phần AI hỗ trợ:**
