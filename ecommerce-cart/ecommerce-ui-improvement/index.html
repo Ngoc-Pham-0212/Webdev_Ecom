@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grimm DC Concept Store | Cửa hàng trực tuyến</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER CHÍNH ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">GRIMM DC</a>
+      
+      <!-- Menu Navigation có gắn data-filter -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="nav-filter active" data-filter="all">Bộ sưu tập</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-thun">Áo thun</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-khoac">Áo khoác</a></li>
+          <li><a href="#" class="nav-filter" data-filter="phu-kien">Phụ kiện</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="cart-trigger-btn" id="open-cart-btn" aria-label="Mở giỏ hàng">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge-count">2</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= NỘI DUNG CHÍNH ================= -->
+  <main class="main-content">
+    <div class="container">
+      
+      <section class="catalog-heading">
+        <span class="category-sub">Dự án Văn hóa & Lịch sử</span>
+        <h1 class="category-title" id="catalog-title">Tất cả sản phẩm</h1>
+        <p class="category-desc">Khám phá các thiết kế mang tinh thần đường phố đương đại kết hợp cùng câu chuyện bản sắc Việt Nam.</p>
+      </section>
+
+      <!-- Danh sách 8 sản phẩm (Đã gắn data-category) -->
+      <section class="product-grid" aria-label="Danh sách sản phẩm">
+        
+        <!-- SP 1: Áo thun -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-15%</span>
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h2>
+            <div class="product-pricing">
+              <span class="price-current">380.000₫</span>
+              <del class="price-original">450.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" data-price="380000" data-variant="Size: M" data-img="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 2: Áo thun -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge new-badge">Mới</span>
+            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&auto=format&fit=crop&q=80" alt="Áo Người Việt Nam // Đen" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Người Việt Nam // Đen</h2>
+            <div class="product-pricing">
+              <span class="price-current">420.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Người Việt Nam // Đen" data-price="420000" data-variant="Size: M" data-img="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 3: Phụ kiện -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&auto=format&fit=crop&q=80" alt="Nón BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Nón BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">350.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Nón BTX x Grimm DC" data-price="350000" data-variant="Màu: Đen / Freesize" data-img="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 4: Áo khoác -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-10%</span>
+            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80" alt="Áo khoác SINCITY" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo khoác SINCITY</h2>
+            <div class="product-pricing">
+              <span class="price-current">650.000₫</span>
+              <del class="price-original">720.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo khoác SINCITY" data-price="650000" data-variant="Size: L" data-img="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 5: Áo khoác -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-38%</span>
+            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80" alt="Áo bomber BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo bomber BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">749.000₫</span>
+              <del class="price-original">1.200.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo bomber BTX x Grimm DC" data-price="749000" data-variant="Size: L" data-img="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 6: Áo khoác -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=600&auto=format&fit=crop&q=80" alt="Bomber TWxGR" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Bomber TWxGR</h2>
+            <div class="product-pricing">
+              <span class="price-current">699.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Bomber TWxGR" data-price="699000" data-variant="Size: L" data-img="https://images.unsplash.com/photo-1544441893-675973e31985?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 7: Phụ kiện -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80" alt="Miếng dán gai cờ Việt Nam 2.3x5cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai cờ Việt Nam 2.3x5cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai cờ Việt Nam 2.3x5cm" data-price="70000" data-variant="Kích thước: 2.3x5cm" data-img="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 8: Phụ kiện -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80" alt="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" data-price="70000" data-variant="Kích thước: 7.8x6.2cm" data-img="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=160&auto=format&fit=crop&q=80">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= TÓM TẮT GIỎ HÀNG (SLIDE-OUT CART) ================= -->
+  <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    
+    <header class="cart-header">
+      <div class="cart-header-title">
+        <h2 id="cart-title">Giỏ hàng của bạn</h2>
+        <span class="cart-count-label" id="cart-count-label">(2 món)</span>
+      </div>
+      <button type="button" class="cart-close-btn" id="close-cart-btn" aria-label="Đóng giỏ hàng">&times;</button>
+    </header>
+
+    <section class="cart-freeship-banner">
+      <p class="freeship-text" id="freeship-text"></p>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="freeship-progress-fill" style="width: 0%;"></div>
+      </div>
+    </section>
+
+    <div class="cart-body">
+      <ul class="cart-item-list" id="cart-item-list">
+        
+        <li class="cart-item" data-price="380000" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng">
+          <img class="cart-item-img" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=160&auto=format&fit=crop&q=80" alt="Áo Độc Lập">
+          <div class="cart-item-info">
+            <h3 class="cart-item-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h3>
+            <div class="cart-item-pricing">
+              <span class="price">380.000₫</span>
+            </div>
+            
+            <div class="cart-item-variant">
+              <label for="variant-item-1">Kích cỡ:</label>
+              <select id="variant-item-1" class="variant-select">
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL (Hết)</option>
+              </select>
+            </div>
+
+            <div class="cart-item-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn btn-qty-minus" aria-label="Giảm số lượng">-</button>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
+                <button type="button" class="qty-btn btn-qty-plus" aria-label="Tăng số lượng">+</button>
+              </div>
+              <button type="button" class="item-remove-btn">Xóa</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="cart-item" data-price="350000" data-name="Nón BTX x Grimm DC">
+          <img class="cart-item-img" src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=160&auto=format&fit=crop&q=80" alt="Nón BTX x Grimm DC">
+          <div class="cart-item-info">
+            <h3 class="cart-item-name">Nón BTX x Grimm DC</h3>
+            <div class="cart-item-pricing">
+              <span class="price">350.000₫</span>
+            </div>
+
+            <div class="cart-item-variant">
+              <span class="variant-fixed">Màu: Đen / Freesize</span>
+            </div>
+
+            <div class="cart-item-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn btn-qty-minus" aria-label="Giảm số lượng">-</button>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
+                <button type="button" class="qty-btn btn-qty-plus" aria-label="Tăng số lượng">+</button>
+              </div>
+              <button type="button" class="item-remove-btn">Xóa</button>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+      <section class="cart-cross-sell" id="cross-sell-section">
+        <h4 class="cross-sell-title" id="cross-sell-title">Gợi ý mua kèm để đạt Freeship</h4>
+        <div class="cross-sell-card" id="cross-sell-card-content"></div>
+      </section>
+    </div>
+
+    <footer class="cart-footer">
+      <div class="cart-summary-row">
+        <span class="summary-label">Tạm tính:</span>
+        <span class="summary-value" id="cart-subtotal">730.000₫</span>
+      </div>
+      <p class="cart-shipping-note">Phí vận chuyển và mã giảm giá sẽ được áp dụng ở bước tiếp theo.</p>
+      
+      <a href="#" class="btn btn-checkout">
+        <span>TIẾN HÀNH THANH TOÁN</span>
+        <span class="btn-checkout-price" id="btn-checkout-price">730.000₫</span>
+      </a>
+
+      <button type="button" class="btn btn-continue-shopping" id="continue-shopping-btn">Tiếp tục mua sắm</button>
+    </footer>
+
+  </aside>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const FREESHIP_THRESHOLD = 800000;
+
+    const RECOMMENDATION_CATALOG = [
+      {
+        name: "Miếng dán gai cờ Việt Nam 2.3x5cm",
+        price: 70000,
+        variant: "Kích thước: 2.3x5cm",
+        img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=160&auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm",
+        price: 70000,
+        variant: "Kích thước: 7.8x6.2cm",
+        img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=160&auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Nón BTX x Grimm DC",
+        price: 350000,
+        variant: "Màu: Đen / Freesize",
+        img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=160&auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng",
+        price: 380000,
+        variant: "Size: M",
+        img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=160&auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Áo Người Việt Nam // Đen",
+        price: 420000,
+        variant: "Size: M",
+        img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=160&auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Áo khoác SINCITY",
+        price: 650000,
+        variant: "Size: L",
+        img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=160&auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Bomber TWxGR",
+        price: 699000,
+        variant: "Size: L",
+        img: "https://images.unsplash.com/photo-1544441893-675973e31985?w=160&auto=format&fit=crop&q=80"
+      },
+      {
+        name: "Áo bomber BTX x Grimm DC",
+        price: 749000,
+        variant: "Size: L",
+        img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=160&auto=format&fit=crop&q=80"
+      }
+    ];
+
+    // DOM Elements
+    const drawer = document.getElementById('cart-drawer');
+    const backdrop = document.getElementById('cart-backdrop');
+    const openBtn = document.getElementById('open-cart-btn');
+    const closeBtn = document.getElementById('close-cart-btn');
+    const continueBtn = document.getElementById('continue-shopping-btn');
+    const cartItemList = document.getElementById('cart-item-list');
+    const cartBadgeCount = document.getElementById('cart-badge-count');
+    const cartCountLabel = document.getElementById('cart-count-label');
+    const cartSubtotalEl = document.getElementById('cart-subtotal');
+    const btnCheckoutPriceEl = document.getElementById('btn-checkout-price');
+    const freeshipTextEl = document.getElementById('freeship-text');
+    const freeshipProgressFill = document.getElementById('freeship-progress-fill');
+    const crossSellTitleEl = document.getElementById('cross-sell-title');
+    const crossSellCardEl = document.getElementById('cross-sell-card-content');
+    const catalogTitleEl = document.getElementById('catalog-title');
+
+    function formatCurrency(amount) {
+      return amount.toLocaleString('vi-VN') + '₫';
+    }
+
+    // ================= LOGIC LỌC SẢN PHẨM Ở HEADER =================
+    const navFilterLinks = document.querySelectorAll('.nav-filter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    navFilterLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // 1. Cập nhật class active cho menu
+        navFilterLinks.forEach(item => item.classList.remove('active'));
+        link.classList.add('active');
+
+        // 2. Lấy giá trị filter
+        const filterValue = link.getAttribute('data-filter');
+
+        // 3. Đổi tiêu đề danh mục tương ứng
+        const titlesMap = {
+          'all': 'Tất cả sản phẩm',
+          'ao-thun': 'Danh mục: Áo thun',
+          'ao-khoac': 'Danh mục: Áo khoác',
+          'phu-kien': 'Danh mục: Phụ kiện'
+        };
+        catalogTitleEl.textContent = titlesMap[filterValue] || 'Sản phẩm nổi bật';
+
+        // 4. Lọc hiển thị thẻ sản phẩm
+        productCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          if (filterValue === 'all' || cardCategory === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ================= LOGIC TÍNH TIỀN & DYNAMIC CROSS-SELL =================
+    function updateCrossSellRecommendation(remaining, currentCartItemNames) {
+      const availableItems = RECOMMENDATION_CATALOG.filter(item => !currentCartItemNames.includes(item.name));
+      const pool = availableItems.length > 0 ? availableItems : RECOMMENDATION_CATALOG;
+
+      let chosenItem = null;
+
+      if (remaining <= 0) {
+        crossSellTitleEl.textContent = "Sản phẩm bán chạy có thể bạn thích";
+        chosenItem = pool.find(item => item.price === 70000) || pool[0];
+      } else {
+        crossSellTitleEl.textContent = "Gợi ý mua kèm để đạt Freeship";
+
+        const qualifyingItems = pool
+          .filter(item => item.price >= remaining)
+          .sort((a, b) => a.price - b.price);
+
+        if (qualifyingItems.length > 0) {
+          chosenItem = qualifyingItems[0];
+        } else {
+          const sortedDesc = [...pool].sort((a, b) => b.price - a.price);
+          chosenItem = sortedDesc[0];
+        }
+      }
+
+      crossSellCardEl.innerHTML = `
+        <img src="${chosenItem.img}" alt="${chosenItem.name}" class="cross-sell-img">
+        <div class="cross-sell-info">
+          <p class="cross-sell-name">${chosenItem.name}</p>
+          <p class="cross-sell-price">${formatCurrency(chosenItem.price)}</p>
+        </div>
+        <button type="button" class="btn btn-add-cross" 
+                data-name="${chosenItem.name}" 
+                data-price="${chosenItem.price}" 
+                data-img="${chosenItem.img}" 
+                data-variant="${chosenItem.variant}">+ Thêm</button>
+      `;
+
+      crossSellCardEl.querySelector('.btn-add-cross').addEventListener('click', function() {
+        addProductToCart(
+          this.getAttribute('data-name'),
+          parseInt(this.getAttribute('data-price'), 10),
+          this.getAttribute('data-img'),
+          this.getAttribute('data-variant')
+        );
+      });
+    }
+
+    function recalculateCart() {
+      const items = cartItemList.querySelectorAll('.cart-item');
+      let subtotal = 0;
+      let totalCount = 0;
+      let currentItemNames = [];
+
+      items.forEach(item => {
+        const price = parseInt(item.getAttribute('data-price'), 10) || 0;
+        const qty = parseInt(item.querySelector('.qty-input').value, 10) || 0;
+        const name = item.querySelector('.cart-item-name').textContent.trim();
+        subtotal += price * qty;
+        totalCount += qty;
+        currentItemNames.push(name);
+      });
+
+      cartBadgeCount.textContent = totalCount;
+      cartCountLabel.textContent = `(${totalCount} món)`;
+      cartSubtotalEl.textContent = formatCurrency(subtotal);
+      btnCheckoutPriceEl.textContent = formatCurrency(subtotal);
+
+      const remaining = FREESHIP_THRESHOLD - subtotal;
+
+      if (remaining <= 0) {
+        freeshipProgressFill.style.width = '100%';
+        freeshipProgressFill.style.backgroundColor = '#2e7d32';
+        freeshipTextEl.innerHTML = '🎉 Chúc mừng! Đơn hàng của bạn đã được <strong>Miễn phí vận chuyển</strong>';
+      } else {
+        const percentage = Math.max(0, Math.min(Math.round((subtotal / FREESHIP_THRESHOLD) * 100), 100));
+        freeshipProgressFill.style.width = `${percentage}%`;
+        freeshipProgressFill.style.backgroundColor = 'var(--color-accent)';
+        freeshipTextEl.innerHTML = `Mua thêm <strong class="highlight-price">${formatCurrency(remaining)}</strong> để được <strong>Miễn phí vận chuyển</strong>`;
+      }
+
+      updateCrossSellRecommendation(remaining, currentItemNames);
+    }
+
+    function addProductToCart(name, price, img, variant) {
+      let existingItem = Array.from(cartItemList.querySelectorAll('.cart-item')).find(item => {
+        return item.querySelector('.cart-item-name').textContent.trim() === name;
+      });
+
+      if (existingItem) {
+        const qtyInput = existingItem.querySelector('.qty-input');
+        qtyInput.value = parseInt(qtyInput.value, 10) + 1;
+      } else {
+        const newLi = document.createElement('li');
+        newLi.className = 'cart-item';
+        newLi.setAttribute('data-price', price);
+        newLi.setAttribute('data-name', name);
+        newLi.innerHTML = `
+          <img class="cart-item-img" src="${img}" alt="${name}">
+          <div class="cart-item-info">
+            <h3 class="cart-item-name">${name}</h3>
+            <div class="cart-item-pricing">
+              <span class="price">${formatCurrency(price)}</span>
+            </div>
+            <div class="cart-item-variant">
+              <span class="variant-fixed">${variant}</span>
+            </div>
+            <div class="cart-item-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn btn-qty-minus" aria-label="Giảm số lượng">-</button>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
+                <button type="button" class="qty-btn btn-qty-plus" aria-label="Tăng số lượng">+</button>
+              </div>
+              <button type="button" class="item-remove-btn">Xóa</button>
+            </div>
+          </div>
+        `;
+        cartItemList.appendChild(newLi);
+      }
+
+      recalculateCart();
+    }
+
+    function openCart() {
+      drawer.classList.add('is-open');
+      backdrop.classList.add('is-open');
+      document.body.classList.add('body-lock-scroll');
+    }
+
+    function closeCart() {
+      drawer.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      document.body.classList.remove('body-lock-scroll');
+    }
+
+    openBtn.addEventListener('click', openCart);
+    closeBtn.addEventListener('click', closeCart);
+    continueBtn.addEventListener('click', closeCart);
+    backdrop.addEventListener('click', closeCart);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeCart();
+    });
+
+    cartItemList.addEventListener('click', (e) => {
+      const item = e.target.closest('.cart-item');
+      if (!item) return;
+
+      const qtyInput = item.querySelector('.qty-input');
+      let currentQty = parseInt(qtyInput.value, 10);
+
+      if (e.target.classList.contains('btn-qty-plus')) {
+        if (currentQty < 10) {
+          qtyInput.value = currentQty + 1;
+          recalculateCart();
+        }
+      }
+
+      if (e.target.classList.contains('btn-qty-minus')) {
+        if (currentQty > 1) {
+          qtyInput.value = currentQty - 1;
+          recalculateCart();
+        } else {
+          item.remove();
+          recalculateCart();
+        }
+      }
+
+      if (e.target.classList.contains('item-remove-btn')) {
+        item.remove();
+        recalculateCart();
+      }
+    });
+
+    document.querySelectorAll('.btn-add-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-name');
+        const price = parseInt(btn.getAttribute('data-price'), 10);
+        const img = btn.getAttribute('data-img');
+        const variant = btn.getAttribute('data-variant') || 'Size: Tiêu chuẩn';
+
+        addProductToCart(name, price, img, variant);
+        openCart();
+      });
+    });
+
+    recalculateCart();
+  </script>
+</body>
+</html>
