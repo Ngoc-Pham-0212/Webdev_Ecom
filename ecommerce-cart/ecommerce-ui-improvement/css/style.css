@@ -1,3 +1,7 @@
+/* ===== BẢN "TRƯỚC" – chỉ dùng để chụp ảnh trước khi chỉnh sửa =====
+   Đã bỏ định dạng của thẻ sản phẩm (viền, bo góc, padding, margin, giá, nút).
+   Giữ nguyên reset, lưới sản phẩm và giỏ hàng. ===== */
+
 /* ==========================================================================
    1. RESET & BIẾN CSS TOÀN CỤC
    ========================================================================== */
@@ -168,125 +172,6 @@ button, input, select {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-}
-
-.product-card {
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-}
-
-.product-thumb {
-  position: relative;
-  background-color: #eee;
-  aspect-ratio: 1 / 1.15;
-  overflow: hidden;
-}
-
-.product-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.product-card:hover .product-thumb img {
-  transform: scale(1.05);
-}
-
-.badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.discount-badge {
-  background-color: var(--color-accent);
-  color: #fff;
-}
-
-.new-badge {
-  background-color: var(--color-primary);
-  color: #fff;
-}
-
-.product-details {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.product-tag {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.product-name {
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 12px;
-  flex-grow: 1;
-}
-
-.product-pricing {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.price-current {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--color-primary);
-}
-
-.price-original {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-}
-
-.btn-add-card {
-  width: 100%;
-  background-color: #ffffff;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-}
-
-.btn-add-card:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
 }
 
 /* ==========================================================================
