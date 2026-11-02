@@ -1126,8 +1126,9 @@ Chưa viết lại toàn bộ mã nguồn.
 Không tạo website mới.
 Hãy giúp tôi hiểu mã hiện tại trước khi sửa.
 ```
-- Mục đích sử dụng AI: Nhờ AI đọc mã HTML/CSS hiện tại của Buổi 1 (trang danh mục sản phẩm Grimm DC Concept Store) để hiểu cấu trúc trước khi chỉnh sửa; không nhờ viết lại mã hay tạo website mới.
-- Kết quả AI hỗ trợ:
+### Mục đích sử dụng AI: 
+Nhờ AI đọc mã HTML/CSS hiện tại của Buổi 1 (trang danh mục sản phẩm Grimm DC Concept Store) để hiểu cấu trúc trước khi chỉnh sửa; không nhờ viết lại mã hay tạo website mới.
+### Kết quả AI hỗ trợ:
 + Danh sách các thành phần HTML đã có trong trang.
 + Các thành phần còn thiếu hoặc chưa hợp lý, như thiếu footer toàn trang và dùng <a href="#"> làm nút bấm.
 + Ba vấn đề chính: cấu trúc HTML, giỏ hàng chưa mở được nếu không có JavaScript, menu bị ẩn trên điện thoại.
@@ -1444,8 +1445,7 @@ Tôi đang học HTML5 và muốn cải thiện cấu trúc HTML của bài tậ
 
 Hãy hướng dẫn tôi:
 1. Xác định các phần tử HTML đang được sử dụng.
-2. Kiểm tra cách sử dụng header, nav, main, section,
-article và footer nếu có.
+2. Kiểm tra cách sử dụng header, nav, main, section, article và footer nếu có.
 3. Kiểm tra thứ bậc tiêu đề h1, h2, h3.
 4. Kiểm tra cách sử dụng img, alt và a.
 5. Phát hiện các thẻ chưa đóng hoặc lồng nhau chưa hợp lý.
@@ -1456,3 +1456,38 @@ Không thêm phần tử HTML chỉ để làm mã nguồn dài hơn.
 Không viết lại toàn bộ website.
 Giải thích lý do của từng thay đổi.
 ```
+
+## Mục đích sử dụng
+#
+- Hiểu mã HTML/CSS hiện tại của Buổi 1 trước khi sửa.
+- Kiểm tra cấu trúc HTML5, tìm lỗi và đề xuất cải thiện.
+- Chỉnh sửa mã HTML của khu vực đã chọn (giỏ hàng trượt).
+- Trình bày kết quả thành file Word để nộp.
+
+## Prompt AI đã dùng
+
+| Lần | Nội dung prompt (tóm tắt) |
+|---|---|
+| 1 | Gửi mã HTML, CSS và đề bài, yêu cầu: xác định thành phần HTML đã có, chỉ ra thành phần thiếu hoặc chưa hợp lý, nêu ba vấn đề, đề xuất cách cải thiện bằng HTML5/CSS3 và giải thích thứ tự thực hiện. Ghi rõ: chưa viết lại toàn bộ mã nguồn, không tạo website mới, giúp hiểu mã trước khi sửa. |
+| 2 | "Minh họa đó lấy ở đâu" (hỏi làm rõ nguồn của phần "Minh họa" trong đề bài). |
+| 3 | Nhờ viết phần "Prompt AI đã dùng" cho `AI_usage_log`. |
+| 4 | Gửi lại mã HTML, yêu cầu: xác định phần tử HTML đang dùng, kiểm tra `header`/`nav`/`main`/`section`/`article`/`footer`, thứ bậc tiêu đề, `img`/`alt`/`a`, thẻ chưa đóng hoặc lồng sai, đề xuất cách sửa. Yêu cầu phân biệt lỗi cần sửa và đề xuất cải thiện, không thêm phần tử thừa, giải thích lý do từng thay đổi. Kèm phần "Sản phẩm cần hoàn thành" và bốn câu hỏi tự kiểm tra. |
+| 5 | "Trình bày dưới dạng tôi có thể copy vào file Word nộp thầy mà không bị lỗi format." |
+| 6 | Hỏi về mục "Mã HTML của khu vực đã chọn được chỉnh sửa" vì file chưa có phần này. |
+| 7 | "Sửa luôn vào mã nguồn cho tôi chạy thử được không." |
+| 8 | Nhờ viết lại phần "Prompt AI đã dùng" từ toàn bộ cuộc trao đổi. |
+| 9 | Nhờ chuyển log sang định dạng có thể copy vào git. |
+
+### Kết quả AI cung cấp
+
+- Phân tích mã hiện tại: danh sách phần tử HTML, đánh giá cách dùng thẻ ngữ nghĩa, thứ bậc tiêu đề, `img`/`alt`/`a`, kiểm tra thẻ đóng và lồng nhau.
+- Tách riêng 3 lỗi cần sửa và 5 đề xuất cải thiện, kèm lý do.
+- Gợi ý cách trả lời bốn câu hỏi tự kiểm tra.
+- File `index.html` đã áp dụng các thay đổi cho khu vực giỏ hàng trượt, CSS giữ nguyên.
+
+### Cách tôi sử dụng kết quả
+
+- Đã chọn khu vực nào để chỉnh sửa và vì sao
+- Đã mở `index.html` đã sửa và kiểm tra những gì, ví dụ giao diện có thay đổi không, giỏ hàng, nút đóng
+- Những chỗ thay đổi khác với gợi ý của AI, ví dụ giữ `href="#"` cho nút thanh toán
+- Phần tự viết lại bằng lời của mình, ví dụ giải thích ba phần tử HTML và bốn câu hỏi tự kiểm tra

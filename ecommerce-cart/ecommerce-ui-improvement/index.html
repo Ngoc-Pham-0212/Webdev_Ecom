@@ -187,30 +187,30 @@
   <!-- ================= TÓM TẮT GIỎ HÀNG (SLIDE-OUT CART) ================= -->
   <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
 
-  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+  <div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
 
     <header class="cart-header">
       <div class="cart-header-title">
         <h2 id="cart-title">Giỏ hàng của bạn</h2>
         <span class="cart-count-label" id="cart-count-label">(2 món)</span>
       </div>
-      <a href="#" class="cart-close-btn" id="close-cart-btn" aria-label="Đóng giỏ hàng">&times;</a>
+      <button type="button" class="cart-close-btn" id="close-cart-btn" aria-label="Đóng giỏ hàng">&times;</button>
     </header>
 
     <!-- Giá trị tĩnh: tạm tính 730.000₫ → còn thiếu 70.000₫ (ngưỡng freeship 800.000₫) -->
-    <section class="cart-freeship-banner">
+    <div class="cart-freeship-banner">
       <p class="freeship-text" id="freeship-text">Mua thêm <strong class="highlight-price">70.000₫</strong> để được <strong>Miễn phí vận chuyển</strong></p>
       <div class="progress-bar-track">
         <div class="progress-bar-fill" id="freeship-progress-fill" style="width: 91%;"></div>
       </div>
-    </section>
+    </div>
 
     <div class="cart-body">
       <ul class="cart-item-list" id="cart-item-list">
 
         <!-- Mục 1 mặc định trong giỏ -->
         <li class="cart-item" data-price="380000" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng">
-          <img class="cart-item-img" src="images/ao-doc-lap.webp" alt="Áo Độc Lập">
+          <img class="cart-item-img" src="images/ao-doc-lap.webp" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng">
           <div class="cart-item-info">
             <h3 class="cart-item-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h3>
             <div class="cart-item-pricing">
@@ -230,7 +230,7 @@
             <div class="cart-item-actions">
               <div class="quantity-control">
                 <button type="button" class="qty-btn btn-qty-minus" aria-label="Giảm số lượng">-</button>
-                <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly aria-label="Số lượng">
                 <button type="button" class="qty-btn btn-qty-plus" aria-label="Tăng số lượng">+</button>
               </div>
               <button type="button" class="item-remove-btn">Xóa</button>
@@ -254,7 +254,7 @@
             <div class="cart-item-actions">
               <div class="quantity-control">
                 <button type="button" class="qty-btn btn-qty-minus" aria-label="Giảm số lượng">-</button>
-                <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly aria-label="Số lượng">
                 <button type="button" class="qty-btn btn-qty-plus" aria-label="Tăng số lượng">+</button>
               </div>
               <button type="button" class="item-remove-btn">Xóa</button>
@@ -266,7 +266,7 @@
 
       <!-- Khối Cross-sell (nội dung tĩnh) -->
       <section class="cart-cross-sell" id="cross-sell-section">
-        <h4 class="cross-sell-title" id="cross-sell-title">Gợi ý mua kèm để đạt Freeship</h4>
+        <h3 class="cross-sell-title" id="cross-sell-title">Gợi ý mua kèm để đạt Freeship</h3>
         <div class="cross-sell-card" id="cross-sell-card-content">
           <img src="images/patch-co-vn.webp" alt="Miếng dán gai cờ Việt Nam 2.3x5cm" class="cross-sell-img">
           <div class="cross-sell-info">
@@ -289,15 +289,15 @@
       </div>
       <p class="cart-shipping-note">Phí vận chuyển và mã giảm giá sẽ được áp dụng ở bước tiếp theo.</p>
 
-      <a href="#" class="btn btn-checkout">
+      <a href="checkout.html" class="btn btn-checkout">
         <span>TIẾN HÀNH THANH TOÁN</span>
         <span class="btn-checkout-price" id="btn-checkout-price">730.000₫</span>
       </a>
 
-      <a href="#" class="btn btn-continue-shopping" id="continue-shopping-btn">Tiếp tục mua sắm</a>
+      <button type="button" class="btn btn-continue-shopping" id="continue-shopping-btn">Tiếp tục mua sắm</button>
     </footer>
 
-  </aside>
+  </div>
 
 </body>
 </html>
