@@ -82,7 +82,7 @@ Ngoài phạm vi: thêm sản phẩm vào giỏ, đổi số lượng, lọc dan
 | Trang HTML mở được | Đạt | Cấu trúc hợp lệ (`lang`, `charset`, `viewport`), các thẻ đóng đầy đủ. |
 | CSS được áp dụng | Đạt | `css/style.css` được tải thành công (tab Network không báo lỗi 404). |
 | Hình ảnh hiển thị đúng | Đạt | 8 ảnh `.webp` hiển thị trong khung tỷ lệ cố định, không bị méo nhờ `aspect-ratio` và `object-fit: cover`. |
-| Liên kết hoạt động | Đạt (có giới hạn) | Icon giỏ hàng mở/đóng được ngăn kéo sau khi thêm script. Menu danh mục dùng `href="#"` làm giữ chỗ; `checkout.html` chưa thực hiện. |
+| Liên kết hoạt động | Chưa đạt | Icon giỏ chưa mở được ngăn kéo; checkout.html và menu lọc chưa làm (do liên quan tới JS) |
 | Bố cục không bị tràn nghiêm trọng | Đạt | Grid 4 cột (trên 992px), 2 cột (từ 992px trở xuống); không có thanh cuộn ngang ở các độ rộng 320, 600, 992 và 1200px. |
 | Hover/focus hoạt động | Đạt | Nút, menu, icon giỏ, nút trong giỏ hàng đều có hover và vòng focus khi dùng phím Tab. |
 | Đã tự sửa ít nhất một vấn đề | Đạt | Đã sửa 6 vấn đề, xem mục 4. |
