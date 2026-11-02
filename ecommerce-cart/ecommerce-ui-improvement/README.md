@@ -1,4 +1,4 @@
-# E-commerce UI Improvement - Grimm DC Slide-out Cart
+# BUỔI 1
 
 ## 1. Giới thiệu
 Dự án thực hiện khảo sát cấu trúc, chức năng và trải nghiệm người dùng trên website thương mại điện tử thực tế Grimm DC (thương hiệu thời trang đường phố Local Brand Việt Nam). Từ kết quả khảo sát, dự án tập trung thiết kế và xây dựng giải pháp cải tiến giao diện cho khu vực **Ngăn kéo giỏ hàng trượt ngang (Slide-out Cart / Mini Cart)** kết hợp thanh tiến trình miễn phí vận chuyển (**Freeship Progress Bar**) và khối bán chéo sản phẩm phụ trợ (**Dynamic Cross-sell**) bằng HTML5 và CSS3 chuẩn Semantic, tối ưu hiển thị Responsive trên đa thiết bị.
@@ -52,3 +52,63 @@ Dự án thực hiện khảo sát cấu trúc, chức năng và trải nghiệm
   - Đối chiếu thực tế website Grimm DC: Loại bỏ các nhận xét sai của AI về việc Grimm DC không có giỏ hàng trượt (thực tế web đã có nhưng còn đơn điệu).
   - Tự bổ sung các đặc trưng riêng của Grimm DC vào nội dung: Sản phẩm miếng dán gai (Velcro patch), nón thêu, các mốc giá thực tế (ngưỡng Freeship 800.000₫, giá patch 70.000₫).
   - Tinh chỉnh CSS: Thêm `100dvh` cho Mobile, bổ sung vùng an toàn `env(safe-area-inset-bottom)` cho iPhone và thiết lập `overflow: hidden` khi mở ngăn kéo để chống cuộn trang nền.
+
+# BUỔI 2
+## Báo cáo kiểm thử
+
+### 1. Thông tin chung
+
+| Mục | Nội dung |
+|---|---|
+| Dự án | Grimm DC Concept Store – giao diện TMĐT (HTML5 + CSS3) |
+| Ngày kiểm thử | 03/11/2026 |
+| Trình duyệt | Cốc Cốc |
+| Công cụ | Chrome DevTools (Elements, Network, Device Toolbar, Rendering) |
+| Tệp chính | `index.html`, `css/style.css`, thư mục `images/` |
+
+### 2. Phạm vi kiểm thử
+
+- Hiển thị trang chủ: header, danh sách 8 sản phẩm, ngăn kéo giỏ hàng.
+- Bố cục responsive: Flexbox (header, thẻ sản phẩm, giỏ hàng) và CSS Grid (danh sách sản phẩm).
+- Hiệu ứng `:hover`, `:focus-visible`, `:active` và `prefers-reduced-motion`.
+- Khả năng truy cập bằng bàn phím và độ tương phản màu.
+
+Ngoài phạm vi: thêm sản phẩm vào giỏ, đổi số lượng, lọc danh mục (cần JavaScript); trang `checkout.html`.
+
+### 3. Bảng kiểm thử
+
+| Nội dung kiểm tra | Kết quả | Ghi chú |
+|---|---|---|
+| Trang HTML mở được | Đạt | Cấu trúc hợp lệ (`lang`, `charset`, `viewport`), các thẻ đóng đầy đủ. |
+| CSS được áp dụng | Đạt | `css/style.css` được tải thành công (tab Network không báo lỗi 404). |
+| Hình ảnh hiển thị đúng | Đạt | 8 ảnh `.webp` hiển thị trong khung tỷ lệ cố định, không bị méo nhờ `aspect-ratio` và `object-fit: cover`. |
+| Liên kết hoạt động | Đạt (có giới hạn) | Icon giỏ hàng mở/đóng được ngăn kéo sau khi thêm script. Menu danh mục dùng `href="#"` làm giữ chỗ; `checkout.html` chưa thực hiện. |
+| Bố cục không bị tràn nghiêm trọng | Đạt | Grid 4 cột (trên 992px), 2 cột (từ 992px trở xuống); không có thanh cuộn ngang ở các độ rộng 320, 600, 992 và 1200px. |
+| Hover/focus hoạt động | Đạt | Nút, menu, icon giỏ, nút trong giỏ hàng đều có hover và vòng focus khi dùng phím Tab. |
+| Đã tự sửa ít nhất một vấn đề | Đạt | Đã sửa 6 vấn đề, xem mục 4. |
+
+### 4. Lỗi phát hiện và cách khắc phục
+
+| # | Vấn đề | Cách khắc phục | Kết quả sau sửa |
+|---|---|---|---|
+| 1 | Không có JavaScript nên bấm icon giỏ hàng không mở được ngăn kéo. | Thêm script nhỏ bật/tắt các class `is-open` và `body-lock-scroll`; hỗ trợ đóng bằng nút ×, nền mờ và phím Esc. | Ngăn kéo mở và đóng bình thường. |
+| 2 | Ngăn kéo khi đóng chỉ bị đẩy ra ngoài màn hình, phím Tab vẫn đi vào các nút ẩn. | Thêm `visibility: hidden` cho `.cart-drawer`, chuyển `visible` khi mở. | Tab bỏ qua ngăn kéo khi đóng. |
+| 3 | `:focus-visible` mới có ở nút "Thêm vào giỏ". | Thêm quy tắc chung cho `.btn`, liên kết menu, icon giỏ, nút ×, nút số lượng, nút xóa, ô chọn size. | Mọi điều khiển đều có vòng focus rõ. |
+| 4 | Nhãn giảm giá sai so với giá: 380.000₫/450.000₫ giảm khoảng 16%; 70.000₫/89.000₫ giảm khoảng 21%. | Sửa `-15%` thành `-16%` (SP 1), `-22%` thành `-21%` (SP 7, SP 8). | Nhãn khớp với giá. |
+| 5 | Chữ đỏ `#e53935` có tương phản khoảng 4,0–4,2:1, chưa đạt mức 4,5:1 cho chữ nhỏ. | Đổi `--color-accent` thành `#c62828`. | Tương phản khoảng 5,3–5,6:1. |
+| 6 | `transition` thừa dấu `;;` và còn comment hướng dẫn trong CSS. | Dọn lại cú pháp, viết lại comment mô tả. | Mã CSS gọn và đúng cú pháp. |
+
+### 5. Hạn chế và việc chưa thực hiện
+
+- Chưa có JavaScript cho: thêm sản phẩm vào giỏ, tăng giảm số lượng, xóa sản phẩm, lọc danh mục, cập nhật tạm tính và thanh freeship (hiện là giá trị tĩnh).
+- Trang `checkout.html` chưa được tạo.
+- Dưới 600px menu danh mục bị ẩn và chưa có menu thay thế (ví dụ menu hamburger).
+- Chưa kiểm thử trên trình duyệt di động thật hoặc trình đọc màn hình.
+
+### 6. Kết luận
+
+Giao diện hiển thị đúng, bố cục responsive ổn định và hiệu ứng hover/focus hoạt động trên các thành phần chính. Các lỗi về mở giỏ hàng, truy cập bàn phím, nhãn giảm giá và độ tương phản đã được khắc phục. Các chức năng cần JavaScript và trang thanh toán là hướng phát triển tiếp theo.
+
+### 7. Ghi chú về việc dùng AI
+
+Công cụ AI (Claude) được dùng để rà soát mã và gợi ý cách sửa. Toàn bộ thay đổi được tự áp dụng và kiểm tra lại trên trình duyệt. Chi tiết xem trong `AI_usage_log`.
