@@ -1457,29 +1457,13 @@ Không viết lại toàn bộ website.
 Giải thích lý do của từng thay đổi.
 ```
 
-## Mục đích sử dụng
-#
+### Mục đích sử dụng
 - Hiểu mã HTML/CSS hiện tại của Buổi 1 trước khi sửa.
 - Kiểm tra cấu trúc HTML5, tìm lỗi và đề xuất cải thiện.
 - Chỉnh sửa mã HTML của khu vực đã chọn (giỏ hàng trượt).
 - Trình bày kết quả thành file Word để nộp.
 
-## Prompt AI đã dùng
-
-| Lần | Nội dung prompt (tóm tắt) |
-|---|---|
-| 1 | Gửi mã HTML, CSS và đề bài, yêu cầu: xác định thành phần HTML đã có, chỉ ra thành phần thiếu hoặc chưa hợp lý, nêu ba vấn đề, đề xuất cách cải thiện bằng HTML5/CSS3 và giải thích thứ tự thực hiện. Ghi rõ: chưa viết lại toàn bộ mã nguồn, không tạo website mới, giúp hiểu mã trước khi sửa. |
-| 2 | "Minh họa đó lấy ở đâu" (hỏi làm rõ nguồn của phần "Minh họa" trong đề bài). |
-| 3 | Nhờ viết phần "Prompt AI đã dùng" cho `AI_usage_log`. |
-| 4 | Gửi lại mã HTML, yêu cầu: xác định phần tử HTML đang dùng, kiểm tra `header`/`nav`/`main`/`section`/`article`/`footer`, thứ bậc tiêu đề, `img`/`alt`/`a`, thẻ chưa đóng hoặc lồng sai, đề xuất cách sửa. Yêu cầu phân biệt lỗi cần sửa và đề xuất cải thiện, không thêm phần tử thừa, giải thích lý do từng thay đổi. Kèm phần "Sản phẩm cần hoàn thành" và bốn câu hỏi tự kiểm tra. |
-| 5 | "Trình bày dưới dạng tôi có thể copy vào file Word nộp thầy mà không bị lỗi format." |
-| 6 | Hỏi về mục "Mã HTML của khu vực đã chọn được chỉnh sửa" vì file chưa có phần này. |
-| 7 | "Sửa luôn vào mã nguồn cho tôi chạy thử được không." |
-| 8 | Nhờ viết lại phần "Prompt AI đã dùng" từ toàn bộ cuộc trao đổi. |
-| 9 | Nhờ chuyển log sang định dạng có thể copy vào git. |
-
 ### Kết quả AI cung cấp
-
 - Phân tích mã hiện tại: danh sách phần tử HTML, đánh giá cách dùng thẻ ngữ nghĩa, thứ bậc tiêu đề, `img`/`alt`/`a`, kiểm tra thẻ đóng và lồng nhau.
 - Tách riêng 3 lỗi cần sửa và 5 đề xuất cải thiện, kèm lý do.
 - Gợi ý cách trả lời bốn câu hỏi tự kiểm tra.
@@ -1491,3 +1475,1698 @@ Giải thích lý do của từng thay đổi.
 - Đã mở `index.html` đã sửa và kiểm tra những gì, ví dụ giao diện có thay đổi không, giỏ hàng, nút đóng
 - Những chỗ thay đổi khác với gợi ý của AI, ví dụ giữ `href="#"` cho nút thanh toán
 - Phần tự viết lại bằng lời của mình, ví dụ giải thích ba phần tử HTML và bốn câu hỏi tự kiểm tra
+
+## 4. Prompt 3 - Tạo CSS cơ bản
+```text
+Tôi có website HTML5 từ bài tập Buổi 1.
+Cấu trúc thư mục:
+![alt text](image.png)
+
+Đoạn HTML:
+<header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">GRIMM DC</a>
+
+      <!-- Menu Navigation danh mục -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="nav-filter active" data-filter="all">Bộ sưu tập</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-thun">Áo thun</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-khoac">Áo khoác</a></li>
+          <li><a href="#" class="nav-filter" data-filter="phu-kien">Phụ kiện</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#cart-drawer" class="cart-trigger-btn" id="open-cart-btn" aria-label="Mở giỏ hàng">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge-count">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= NỘI DUNG CHÍNH ================= -->
+  <main class="main-content">
+    <div class="container">
+
+      <section class="catalog-heading">
+        <span class="category-sub">Dự án Văn hóa & Lịch sử</span>
+        <h1 class="category-title" id="catalog-title">Tất cả sản phẩm</h1>
+        <p class="category-desc">Khám phá các thiết kế mang tinh thần đường phố đương đại kết hợp cùng câu chuyện bản sắc Việt Nam.</p>
+      </section>
+
+      <!-- Danh sách 8 sản phẩm (Dùng ảnh .webp) -->
+      <section class="product-grid" aria-label="Danh sách sản phẩm">
+
+        <!-- SP 1: Áo Độc Lập -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-15%</span>
+            <img src="images/ao-doc-lap.webp" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h2>
+            <div class="product-pricing">
+              <span class="price-current">380.000₫</span>
+              <del class="price-original">450.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" data-price="380000" data-variant="Size: M" data-img="images/ao-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 2: Áo Người Việt Nam -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge new-badge">Mới</span>
+            <img src="images/ao-nguoi-viet-nam.webp" alt="Áo Người Việt Nam // Đen" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Người Việt Nam // Đen</h2>
+            <div class="product-pricing">
+              <span class="price-current">420.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Người Việt Nam // Đen" data-price="420000" data-variant="Size: M" data-img="images/ao-nguoi-viet-nam.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 3: Nón BTX -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <img src="images/non-btx.webp" alt="Nón BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Nón BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">350.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Nón BTX x Grimm DC" data-price="350000" data-variant="Màu: Đen / Freesize" data-img="images/non-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 4: Áo khoác SINCITY -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-10%</span>
+            <img src="images/ao-khoac-sincity.webp" alt="Áo khoác SINCITY" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo khoác SINCITY</h2>
+            <div class="product-pricing">
+              <span class="price-current">650.000₫</span>
+              <del class="price-original">720.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo khoác SINCITY" data-price="650000" data-variant="Size: L" data-img="images/ao-khoac-sincity.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 5: Bomber BTX -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-38%</span>
+            <img src="images/bomber-btx.webp" alt="Áo bomber BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo bomber BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">749.000₫</span>
+              <del class="price-original">1.200.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo bomber BTX x Grimm DC" data-price="749000" data-variant="Size: L" data-img="images/bomber-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 6: Bomber TWxGR -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <img src="images/bomber-twxgr.webp" alt="Bomber TWxGR" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Bomber TWxGR</h2>
+            <div class="product-pricing">
+              <span class="price-current">699.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Bomber TWxGR" data-price="699000" data-variant="Size: L" data-img="images/bomber-twxgr.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 7: Miếng dán gai cờ Việt Nam -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-co-vn.webp" alt="Miếng dán gai cờ Việt Nam 2.3x5cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai cờ Việt Nam 2.3x5cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai cờ Việt Nam 2.3x5cm" data-price="70000" data-variant="Kích thước: 2.3x5cm" data-img="images/patch-co-vn.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 8: Miếng dán gai Độc Lập -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-doc-lap.webp" alt="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" data-price="70000" data-variant="Kích thước: 7.8x6.2cm" data-img="images/patch-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+
+Hãy hướng dẫn tôi:
+1. Tạo và liên kết file css/style.css.
+2. Định dạng font chữ, màu chữ và màu nền.
+3. Thiết lập margin và các quy tắc cơ bản cho body.
+4. Đảm bảo hình ảnh không vượt quá chiều rộng phần tử chứa.
+5. Kiểm tra đường dẫn CSS có chính xác không.
+
+Chỉ tạo CSS cần thiết cho bài tập.
+Không sử dụng Bootstrap hoặc Tailwind CSS.
+Giải thích từng nhóm thuộc tính và hướng dẫn tôi cách kiểm tra bằng trình duyệt.
+```
+### Nội dung đã yêu cầu
+
+
+### Kết quả AI cung cấp
+- Đoạn mã CSS nền tảng bổ sung quy tắc reset * { box-sizing: border-box; }, định dạng body (font Arial/dự phòng, cỡ chữ 16px, line-height: 1.6, màu chữ #222222, màu nền #f5f5f5, margin: 0), giới hạn khung .container (max-width: 1200px, margin: 0 auto), và quy tắc responsive cho img (max-width: 100%, height: auto, display: block).
+- Kiểm tra tab Network (Mã trạng thái HTTP 200 = thành công, 404 = sai đường dẫn/tên file).
+- Kiểm tra tab Elements > Styles để xác nhận file style.css đã nạp các quy tắc cho thẻ <body>.
+- Kiểm tra bảng Computed để xem thông số Box Model của body (margin = 0).
+- Mẹo thử nghiệm thay đổi màu nền tạm thời (background-color: #ffe9e9) để xác minh liên kết file trực quan.
+
+### Phần tôi tự thực hiện / kiểm chứng
+- Tạo/cập nhật file css/style.css trong thư mục dự án và kiểm tra lại thẻ <link rel="stylesheet" href="css/style.css"> ở phần <head> của index.html.
+- Mở trang bằng Live Server trên VS Code và mở Chrome DevTools (F12) để kiểm tra tab Network (xác nhận HTTP status 200)
+
+## 5. Prompt 4 – Thực hành selector và Box Model
+```text
+Tôi muốn thực hành CSS selector và Box Model trên một thẻ sản phẩm trong website của
+mình.
+HTML hiện tại:
+<header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">GRIMM DC</a>
+
+      <!-- Menu Navigation danh mục -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="nav-filter active" data-filter="all">Bộ sưu tập</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-thun">Áo thun</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-khoac">Áo khoác</a></li>
+          <li><a href="#" class="nav-filter" data-filter="phu-kien">Phụ kiện</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#cart-drawer" class="cart-trigger-btn" id="open-cart-btn" aria-label="Mở giỏ hàng">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge-count">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= NỘI DUNG CHÍNH ================= -->
+  <main class="main-content">
+    <div class="container">
+
+      <section class="catalog-heading">
+        <span class="category-sub">Dự án Văn hóa & Lịch sử</span>
+        <h1 class="category-title" id="catalog-title">Tất cả sản phẩm</h1>
+        <p class="category-desc">Khám phá các thiết kế mang tinh thần đường phố đương đại kết hợp cùng câu chuyện bản sắc Việt Nam.</p>
+      </section>
+
+      <!-- Danh sách 8 sản phẩm (Dùng ảnh .webp) -->
+      <section class="product-grid" aria-label="Danh sách sản phẩm">
+
+        <!-- SP 1: Áo Độc Lập -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-15%</span>
+            <img src="images/ao-doc-lap.webp" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h2>
+            <div class="product-pricing">
+              <span class="price-current">380.000₫</span>
+              <del class="price-original">450.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" data-price="380000" data-variant="Size: M" data-img="images/ao-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 2: Áo Người Việt Nam -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge new-badge">Mới</span>
+            <img src="images/ao-nguoi-viet-nam.webp" alt="Áo Người Việt Nam // Đen" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Người Việt Nam // Đen</h2>
+            <div class="product-pricing">
+              <span class="price-current">420.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Người Việt Nam // Đen" data-price="420000" data-variant="Size: M" data-img="images/ao-nguoi-viet-nam.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 3: Nón BTX -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <img src="images/non-btx.webp" alt="Nón BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Nón BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">350.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Nón BTX x Grimm DC" data-price="350000" data-variant="Màu: Đen / Freesize" data-img="images/non-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 4: Áo khoác SINCITY -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-10%</span>
+            <img src="images/ao-khoac-sincity.webp" alt="Áo khoác SINCITY" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo khoác SINCITY</h2>
+            <div class="product-pricing">
+              <span class="price-current">650.000₫</span>
+              <del class="price-original">720.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo khoác SINCITY" data-price="650000" data-variant="Size: L" data-img="images/ao-khoac-sincity.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 5: Bomber BTX -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-38%</span>
+            <img src="images/bomber-btx.webp" alt="Áo bomber BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo bomber BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">749.000₫</span>
+              <del class="price-original">1.200.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo bomber BTX x Grimm DC" data-price="749000" data-variant="Size: L" data-img="images/bomber-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 6: Bomber TWxGR -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <img src="images/bomber-twxgr.webp" alt="Bomber TWxGR" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Bomber TWxGR</h2>
+            <div class="product-pricing">
+              <span class="price-current">699.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Bomber TWxGR" data-price="699000" data-variant="Size: L" data-img="images/bomber-twxgr.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 7: Miếng dán gai cờ Việt Nam -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-co-vn.webp" alt="Miếng dán gai cờ Việt Nam 2.3x5cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai cờ Việt Nam 2.3x5cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai cờ Việt Nam 2.3x5cm" data-price="70000" data-variant="Kích thước: 2.3x5cm" data-img="images/patch-co-vn.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 8: Miếng dán gai Độc Lập -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-doc-lap.webp" alt="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" data-price="70000" data-variant="Kích thước: 7.8x6.2cm" data-img="images/patch-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+
+Hãy hướng dẫn tôi:
+1. Sử dụng element selector và class selector.
+2. Sử dụng descendant selector khi phù hợp.
+3. Điều chỉnh margin, padding và border.
+4. Sử dụng border-radius để bo góc.
+5. Định dạng tên và giá sản phẩm.
+6. Định dạng liên kết thành nút thao tác đơn giản.
+
+Hãy giải thích sự khác nhau giữa margin và padding.
+Giải thích tác dụng của box-sizing: border-box.
+Chỉ đưa ra phần CSS cần thiết.
+Không thay đổi nội dung hoặc tạo lại toàn bộ HTML.
+```
+### Kết quả AI cung cấp
+- Đoạn mã CSS tối ưu hóa cho thẻ sản phẩm (không sửa đổi HTML gốc).
+
+- Phân tích chi tiết 3 trường hợp đặc biệt: khoảng cách thẻ do gap của Grid, thẻ span (.product-tag) nhận margin dọc do Flexbox cha, và ảnh hưởng của CSS Reset (margin: 0; padding: 0).
+
+- Gợi ý 5 bài thí nghiệm kiểm chứng bằng Chrome DevTools (F12). 
+
+### Phần tôi tự thực hiện / kiểm chứng
+- Chạy thử đoạn CSS trên file css/style.css và kiểm tra bằng DevTools.
+- Thực hiện 5 thí nghiệm trên trình duyệt (F12), đặc biệt kiểm chứng việc ẩn/xóa class để xem tác động của Class Selector.
+- Chụp ảnh màn hình so sánh giao diện trước và sau
+
+## 6. Prompt 5 – Thực hành Flexbox
+```text
+Tôi đang học CSS3 và muốn thực hành Flexbox trên một khu vực của website thương
+mại điện tử.
+
+Đây là HTML hiện tại:
+<!-- ================= HEADER CHÍNH ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">GRIMM DC</a>
+
+      <!-- Menu Navigation danh mục -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="nav-filter active" data-filter="all">Bộ sưu tập</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-thun">Áo thun</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-khoac">Áo khoác</a></li>
+          <li><a href="#" class="nav-filter" data-filter="phu-kien">Phụ kiện</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#cart-drawer" class="cart-trigger-btn" id="open-cart-btn" aria-label="Mở giỏ hàng">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge-count">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+Hãy hướng dẫn tôi:
+1. Xác định phần tử cha cần sử dụng display: flex.
+2. Căn chỉnh các phần tử bằng justify-content.
+3. Căn chỉnh theo trục còn lại bằng align-items.
+4. Tạo khoảng cách bằng gap.
+5. So sánh kết quả khi thay đổi các giá trị của justify-content.
+
+Hãy đưa ra một đoạn CSS ngắn phù hợp với HTML.
+Giải thích từng thuộc tính và kết quả mong đợi.
+Không sử dụng framework CSS.
+Không viết lại toàn bộ giao diện.
+```
+
+### Nội dung đã yêu cầu
+Hướng dẫn dùng Flexbox cho thanh header: display: flex, justify-content, align-items, gap, so sánh các giá trị của justify-content.
+
+### Kết quả AI cung cấp
+- Flexbox: áp dụng display: flex; justify-content: space-between; align-items: center; gap: 24px cho .header-inner, kèm giải thích từng thuộc tính và bảng so sánh 6 giá trị của justify-content.
+- Kiểm tra: dùng DevTools (F12), bật lớp phủ lưới grid, sửa trực tiếp giá trị trong tab Styles, thử chế độ thiết bị (Ctrl+Shift+M).
+
+### Phần tôi tự thực hiện / kiểm chứng
+- Chạy thử đoạn CSS trên file css/style.css và kiểm tra bằng DevTools.
+
+## 7. Prompt 6 – Thực hành CSS Grid
+```text
+Tôi đã có một danh sách sản phẩm bằng HTML.
+
+Đây là mã HTML hiện tại:
+
+  <!-- ================= NỘI DUNG CHÍNH ================= -->
+  <main class="main-content">
+    <div class="container">
+
+      <section class="catalog-heading">
+        <span class="category-sub">Dự án Văn hóa & Lịch sử</span>
+        <h1 class="category-title" id="catalog-title">Tất cả sản phẩm</h1>
+        <p class="category-desc">Khám phá các thiết kế mang tinh thần đường phố đương đại kết hợp cùng câu chuyện bản sắc Việt Nam.</p>
+      </section>
+
+      <!-- Danh sách 8 sản phẩm (Dùng ảnh .webp) -->
+      <section class="product-grid" aria-label="Danh sách sản phẩm">
+
+        <!-- SP 1: Áo Độc Lập -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-15%</span>
+            <img src="images/ao-doc-lap.webp" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h2>
+            <div class="product-pricing">
+              <span class="price-current">380.000₫</span>
+              <del class="price-original">450.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" data-price="380000" data-variant="Size: M" data-img="images/ao-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 2: Áo Người Việt Nam -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge new-badge">Mới</span>
+            <img src="images/ao-nguoi-viet-nam.webp" alt="Áo Người Việt Nam // Đen" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Người Việt Nam // Đen</h2>
+            <div class="product-pricing">
+              <span class="price-current">420.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Người Việt Nam // Đen" data-price="420000" data-variant="Size: M" data-img="images/ao-nguoi-viet-nam.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 3: Nón BTX -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <img src="images/non-btx.webp" alt="Nón BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Nón BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">350.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Nón BTX x Grimm DC" data-price="350000" data-variant="Màu: Đen / Freesize" data-img="images/non-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 4: Áo khoác SINCITY -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-10%</span>
+            <img src="images/ao-khoac-sincity.webp" alt="Áo khoác SINCITY" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo khoác SINCITY</h2>
+            <div class="product-pricing">
+              <span class="price-current">650.000₫</span>
+              <del class="price-original">720.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo khoác SINCITY" data-price="650000" data-variant="Size: L" data-img="images/ao-khoac-sincity.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 5: Bomber BTX -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-38%</span>
+            <img src="images/bomber-btx.webp" alt="Áo bomber BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo bomber BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">749.000₫</span>
+              <del class="price-original">1.200.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo bomber BTX x Grimm DC" data-price="749000" data-variant="Size: L" data-img="images/bomber-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 6: Bomber TWxGR -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <img src="images/bomber-twxgr.webp" alt="Bomber TWxGR" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Bomber TWxGR</h2>
+            <div class="product-pricing">
+              <span class="price-current">699.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Bomber TWxGR" data-price="699000" data-variant="Size: L" data-img="images/bomber-twxgr.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 7: Miếng dán gai cờ Việt Nam -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-co-vn.webp" alt="Miếng dán gai cờ Việt Nam 2.3x5cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai cờ Việt Nam 2.3x5cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai cờ Việt Nam 2.3x5cm" data-price="70000" data-variant="Kích thước: 2.3x5cm" data-img="images/patch-co-vn.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 8: Miếng dán gai Độc Lập -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-doc-lap.webp" alt="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" data-price="70000" data-variant="Kích thước: 7.8x6.2cm" data-img="images/patch-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+Hãy hướng dẫn tôi sử dụng CSS Grid để:
+1. Bố trí danh sách thành hai cột.
+2. Điều chỉnh khoảng cách giữa các sản phẩm.
+3. Giữ hình ảnh hiển thị đúng tỷ lệ.
+4. Thay đổi số cột và quan sát kết quả.
+5. Giải thích grid-template-columns, repeat và gap.
+6. Giải thích tác dụng của object-fit: cover.
+
+Chỉ viết CSS cần thiết cho danh sách hiện có.
+Không sử dụng Bootstrap hoặc Tailwind CSS.
+Giải thích cách kiểm tra kết quả trên trình duyệt.
+```
+
+### Nội dung đã yêu cầu
+Hướng dẫn dùng CSS Grid cho danh sách 8 sản phẩm: bố trí 2 cột, khoảng cách, giữ tỷ lệ ảnh, đổi số cột, giải thích grid-template-columns, repeat, gap, object-fit: cover, cách kiểm tra bằng DevTools.
+### Kết quả AI cung cấp
+- Grid: áp dụng display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px cho .product-grid; dùng aspect-ratio: 3 / 4 và object-fit: cover cho .product-thumb và ảnh sản phẩm; hướng dẫn thử 3 cột, 4 cột, 2fr 1fr và repeat(auto-fill, minmax(220px, 1fr)).
+- Kiểm tra: dùng DevTools (F12), bật lớp phủ lưới grid, sửa trực tiếp giá trị trong tab Styles, thử chế độ thiết bị (Ctrl+Shift+M).
+### Phần tôi tự thực hiện / kiểm chứng
+- Chạy thử đoạn CSS trên file css/style.css và kiểm tra bằng DevTools.
+- Đối chiếu với style.css hiện có để tránh trùng hoặc ghi đè rule.
+## 8. Prompt 7 – Bổ sung hiệu ứng CSS
+```text
+Tôi muốn bổ sung hiệu ứng hover và focus cho một nút bấm hoặc liên kết trong website.
+
+Đây là mã HTML:
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grimm DC Concept Store | Cửa hàng trực tuyến</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER CHÍNH ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">GRIMM DC</a>
+
+      <!-- Menu Navigation danh mục -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="nav-filter active" data-filter="all">Bộ sưu tập</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-thun">Áo thun</a></li>
+          <li><a href="#" class="nav-filter" data-filter="ao-khoac">Áo khoác</a></li>
+          <li><a href="#" class="nav-filter" data-filter="phu-kien">Phụ kiện</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#cart-drawer" class="cart-trigger-btn" id="open-cart-btn" aria-label="Mở giỏ hàng">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge-count">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= NỘI DUNG CHÍNH ================= -->
+  <main class="main-content">
+    <div class="container">
+
+      <section class="catalog-heading">
+        <span class="category-sub">Dự án Văn hóa & Lịch sử</span>
+        <h1 class="category-title" id="catalog-title">Tất cả sản phẩm</h1>
+        <p class="category-desc">Khám phá các thiết kế mang tinh thần đường phố đương đại kết hợp cùng câu chuyện bản sắc Việt Nam.</p>
+      </section>
+
+      <!-- Danh sách 8 sản phẩm (Dùng ảnh .webp) -->
+      <section class="product-grid" aria-label="Danh sách sản phẩm">
+
+        <!-- SP 1: Áo Độc Lập -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-15%</span>
+            <img src="images/ao-doc-lap.webp" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h2>
+            <div class="product-pricing">
+              <span class="price-current">380.000₫</span>
+              <del class="price-original">450.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" data-price="380000" data-variant="Size: M" data-img="images/ao-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 2: Áo Người Việt Nam -->
+        <article class="product-card" data-category="ao-thun">
+          <div class="product-thumb">
+            <span class="badge new-badge">Mới</span>
+            <img src="images/ao-nguoi-viet-nam.webp" alt="Áo Người Việt Nam // Đen" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo thun</span>
+            <h2 class="product-name">Áo Người Việt Nam // Đen</h2>
+            <div class="product-pricing">
+              <span class="price-current">420.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo Người Việt Nam // Đen" data-price="420000" data-variant="Size: M" data-img="images/ao-nguoi-viet-nam.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 3: Nón BTX -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <img src="images/non-btx.webp" alt="Nón BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Nón BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">350.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Nón BTX x Grimm DC" data-price="350000" data-variant="Màu: Đen / Freesize" data-img="images/non-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 4: Áo khoác SINCITY -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-10%</span>
+            <img src="images/ao-khoac-sincity.webp" alt="Áo khoác SINCITY" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo khoác SINCITY</h2>
+            <div class="product-pricing">
+              <span class="price-current">650.000₫</span>
+              <del class="price-original">720.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo khoác SINCITY" data-price="650000" data-variant="Size: L" data-img="images/ao-khoac-sincity.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 5: Bomber BTX -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-38%</span>
+            <img src="images/bomber-btx.webp" alt="Áo bomber BTX x Grimm DC" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Áo bomber BTX x Grimm DC</h2>
+            <div class="product-pricing">
+              <span class="price-current">749.000₫</span>
+              <del class="price-original">1.200.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Áo bomber BTX x Grimm DC" data-price="749000" data-variant="Size: L" data-img="images/bomber-btx.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 6: Bomber TWxGR -->
+        <article class="product-card" data-category="ao-khoac">
+          <div class="product-thumb">
+            <img src="images/bomber-twxgr.webp" alt="Bomber TWxGR" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Áo khoác</span>
+            <h2 class="product-name">Bomber TWxGR</h2>
+            <div class="product-pricing">
+              <span class="price-current">699.000₫</span>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Bomber TWxGR" data-price="699000" data-variant="Size: L" data-img="images/bomber-twxgr.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 7: Miếng dán gai cờ Việt Nam -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-co-vn.webp" alt="Miếng dán gai cờ Việt Nam 2.3x5cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai cờ Việt Nam 2.3x5cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai cờ Việt Nam 2.3x5cm" data-price="70000" data-variant="Kích thước: 2.3x5cm" data-img="images/patch-co-vn.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+        <!-- SP 8: Miếng dán gai Độc Lập -->
+        <article class="product-card" data-category="phu-kien">
+          <div class="product-thumb">
+            <span class="badge discount-badge">-22%</span>
+            <img src="images/patch-doc-lap.webp" alt="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" loading="lazy">
+          </div>
+          <div class="product-details">
+            <span class="product-tag">Phụ kiện</span>
+            <h2 class="product-name">Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm</h2>
+            <div class="product-pricing">
+              <span class="price-current">70.000₫</span>
+              <del class="price-original">89.000₫</del>
+            </div>
+            <button type="button" class="btn btn-add-card" data-name="Miếng dán gai Độc Lập - Tự Do - Hạnh Phúc 7.8x6.2cm" data-price="70000" data-variant="Kích thước: 7.8x6.2cm" data-img="images/patch-doc-lap.webp">Thêm vào giỏ</button>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= TÓM TẮT GIỎ HÀNG (SLIDE-OUT CART) ================= -->
+  <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+
+  <div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+
+    <header class="cart-header">
+      <div class="cart-header-title">
+        <h2 id="cart-title">Giỏ hàng của bạn</h2>
+        <span class="cart-count-label" id="cart-count-label">(2 món)</span>
+      </div>
+      <button type="button" class="cart-close-btn" id="close-cart-btn" aria-label="Đóng giỏ hàng">&times;</button>
+    </header>
+
+    <!-- Giá trị tĩnh: tạm tính 730.000₫ → còn thiếu 70.000₫ (ngưỡng freeship 800.000₫) -->
+    <div class="cart-freeship-banner">
+      <p class="freeship-text" id="freeship-text">Mua thêm <strong class="highlight-price">70.000₫</strong> để được <strong>Miễn phí vận chuyển</strong></p>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="freeship-progress-fill" style="width: 91%;"></div>
+      </div>
+    </div>
+
+    <div class="cart-body">
+      <ul class="cart-item-list" id="cart-item-list">
+
+        <!-- Mục 1 mặc định trong giỏ -->
+        <li class="cart-item" data-price="380000" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng">
+          <img class="cart-item-img" src="images/ao-doc-lap.webp" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng">
+          <div class="cart-item-info">
+            <h3 class="cart-item-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h3>
+            <div class="cart-item-pricing">
+              <span class="price">380.000₫</span>
+            </div>
+
+            <div class="cart-item-variant">
+              <label for="variant-item-1">Kích cỡ:</label>
+              <select id="variant-item-1" class="variant-select">
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL" disabled>XL (Hết)</option>
+              </select>
+            </div>
+
+            <div class="cart-item-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn btn-qty-minus" aria-label="Giảm số lượng">-</button>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly aria-label="Số lượng">
+                <button type="button" class="qty-btn btn-qty-plus" aria-label="Tăng số lượng">+</button>
+              </div>
+              <button type="button" class="item-remove-btn">Xóa</button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Mục 2 mặc định trong giỏ -->
+        <li class="cart-item" data-price="350000" data-name="Nón BTX x Grimm DC">
+          <img class="cart-item-img" src="images/non-btx.webp" alt="Nón BTX x Grimm DC">
+          <div class="cart-item-info">
+            <h3 class="cart-item-name">Nón BTX x Grimm DC</h3>
+            <div class="cart-item-pricing">
+              <span class="price">350.000₫</span>
+            </div>
+
+            <div class="cart-item-variant">
+              <span class="variant-fixed">Màu: Đen / Freesize</span>
+            </div>
+
+            <div class="cart-item-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn btn-qty-minus" aria-label="Giảm số lượng">-</button>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly aria-label="Số lượng">
+                <button type="button" class="qty-btn btn-qty-plus" aria-label="Tăng số lượng">+</button>
+              </div>
+              <button type="button" class="item-remove-btn">Xóa</button>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+      <!-- Khối Cross-sell (nội dung tĩnh) -->
+      <section class="cart-cross-sell" id="cross-sell-section">
+        <h3 class="cross-sell-title" id="cross-sell-title">Gợi ý mua kèm để đạt Freeship</h3>
+        <div class="cross-sell-card" id="cross-sell-card-content">
+          <img src="images/patch-co-vn.webp" alt="Miếng dán gai cờ Việt Nam 2.3x5cm" class="cross-sell-img">
+          <div class="cross-sell-info">
+            <p class="cross-sell-name">Miếng dán gai cờ Việt Nam 2.3x5cm</p>
+            <p class="cross-sell-price">70.000₫</p>
+          </div>
+          <button type="button" class="btn btn-add-cross"
+                  data-name="Miếng dán gai cờ Việt Nam 2.3x5cm"
+                  data-price="70000"
+                  data-img="images/patch-co-vn.webp"
+                  data-variant="Kích thước: 2.3x5cm">+ Thêm</button>
+        </div>
+      </section>
+    </div>
+
+    <footer class="cart-footer">
+      <div class="cart-summary-row">
+        <span class="summary-label">Tạm tính:</span>
+        <span class="summary-value" id="cart-subtotal">730.000₫</span>
+      </div>
+      <p class="cart-shipping-note">Phí vận chuyển và mã giảm giá sẽ được áp dụng ở bước tiếp theo.</p>
+
+      <a href="checkout.html" class="btn btn-checkout">
+        <span>TIẾN HÀNH THANH TOÁN</span>
+        <span class="btn-checkout-price" id="btn-checkout-price">730.000₫</span>
+      </a>
+
+      <button type="button" class="btn btn-continue-shopping" id="continue-shopping-btn">Tiếp tục mua sắm</button>
+    </footer>
+
+  </div>
+
+</body>
+</html>
+Đây là mã CSS:
+/* ==========================================================================
+   1. RESET & BIẾN CSS TOÀN CỤC
+   ========================================================================== */
+:root {
+  --color-primary: #111111;
+  --color-accent: #e53935;
+  --color-bg: #f8f8f8;
+  --color-card-bg: #ffffff;
+  --color-text-main: #1a1a1a;
+  --color-text-muted: #666666;
+  --color-border: #e5e5e5;
+  
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --drawer-width: 440px;
+  --transition-speed: 0.35s;
+  --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Khóa cuộn trang khi mở giỏ hàng */
+body.body-lock-scroll {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, select {
+  font-family: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. SITE HEADER
+   ========================================================================== */
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.brand-logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 28px;
+}
+
+.main-nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--color-primary);
+}
+
+.cart-trigger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: var(--color-primary);
+}
+
+.cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  line-height: 18px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+/* ==========================================================================
+   3. CATALOG & PRODUCT GRID
+   ========================================================================== */
+.main-content {
+  padding: 40px 0 80px;
+}
+
+.catalog-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.category-sub {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.category-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+
+.category-desc {
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.product-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.product-thumb {
+  position: relative;
+  background-color: #eee;
+  aspect-ratio: 1 / 1.15;
+  overflow: hidden;
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-thumb img {
+  transform: scale(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.discount-badge {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.new-badge {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.product-details {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-tag {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.product-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.product-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.price-current {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+.price-original {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-add-card {
+  width: 100%;
+  background-color: #ffffff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.btn-add-card:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   4. SLIDE-OUT CART (NGĂN KÉO GIỎ HÀNG)
+   ========================================================================== */
+/* Lớp phủ mờ nền */
+.cart-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-speed) ease, visibility var(--transition-speed);
+}
+
+.cart-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Khung trượt chính */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: var(--drawer-width);
+  height: 100vh;
+  height: 100dvh; /* Tương thích tốt màn hình di động */
+  background-color: #ffffff;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-speed) var(--ease-out-cubic);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+.cart-drawer.is-open {
+  transform: translateX(0);
+}
+
+/* Khối 1: Header giỏ hàng */
+.cart-header {
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.cart-header-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cart-header-title h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.cart-count-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.cart-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Khối 2: Freeship Banner */
+.cart-freeship-banner {
+  background-color: #fcf8e3;
+  padding: 12px 24px;
+  border-bottom: 1px solid #faebcc;
+  flex-shrink: 0;
+}
+
+.freeship-text {
+  font-size: 0.85rem;
+  color: #8a6d3b;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.highlight-price {
+  color: var(--color-accent);
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background-color: #e5e5e5;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--color-accent);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Khối 3: Thân giỏ hàng cuộn độc lập */
+.cart-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px 24px;
+}
+
+.cart-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-item-img {
+  width: 76px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  flex-shrink: 0;
+}
+
+.cart-item-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.cart-item-pricing .price {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.cart-item-variant {
+  margin: 6px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.variant-select {
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.quantity-control {
+  display: inline-flex;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-main);
+}
+
+.qty-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.qty-input {
+  width: 32px;
+  height: 28px;
+  border: none;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.item-remove-btn {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.item-remove-btn:hover {
+  color: var(--color-accent);
+}
+
+/* Khối 4: Cross-sell */
+.cart-cross-sell {
+  margin-top: 24px;
+  padding: 14px;
+  background-color: var(--color-bg);
+  border-radius: 6px;
+}
+
+.cross-sell-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  color: var(--color-text-muted);
+}
+
+.cross-sell-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cross-sell-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.cross-sell-info {
+  flex-grow: 1;
+}
+
+.cross-sell-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.cross-sell-price {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.btn-add-cross {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  background-color: #ffffff;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-add-cross:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Khối 5: Footer giỏ hàng */
+.cart-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--color-border);
+  background-color: #ffffff;
+  flex-shrink: 0;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.summary-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.summary-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.cart-shipping-note {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.btn-checkout {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.btn-checkout:hover {
+  background-color: #333333;
+}
+
+.btn-checkout-price {
+  font-weight: 700;
+}
+
+.btn-continue-shopping {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.btn-continue-shopping:hover {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   5. RESPONSIVE (ĐIỆN THOẠI & TABLET)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-nav {
+    display: none; /* Ẩn menu chính trên mobile để giữ thanh header thoáng */
+  }
+
+  .header-inner {
+    height: 60px;
+  }
+
+  .main-content {
+    padding: 24px 0 60px;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .product-details {
+    padding: 12px;
+  }
+
+  .product-name {
+    font-size: 0.85rem;
+  }
+
+  .price-current {
+    font-size: 0.95rem;
+  }
+
+  /* Giỏ hàng toàn màn hình trên điện thoại */
+  :root {
+    --drawer-width: 100vw;
+  }
+
+  .cart-header,
+  .cart-freeship-banner,
+  .cart-body,
+  .cart-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Đảm bảo vùng an toàn (Safe area) cho nút thanh toán trên mobile */
+  .cart-footer {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+}
+Hãy hướng dẫn tôi:
+1. Tạo hiệu ứng hover nhẹ.
+2. Sử dụng transition để tạo chuyển đổi mượt.
+3. Bổ sung focus-visible để hỗ trợ điều hướng bằng bàn phím.
+4. Đảm bảo màu chữ và màu nền dễ nhìn.
+5. Không làm thay đổi bố cục quá nhiều.
+
+Hãy chỉ đưa ra phần CSS cần thêm hoặc sửa. 
+Giải thích từng thuộc tính và cách kiểm tra.
+```
+### Nội dung đã yêu cầu
+- Hướng dẫn thêm hiệu ứng hover nhẹ và transition cho nút “Thêm vào giỏ” (.btn-add-card).
+- Bổ sung :focus-visible để hỗ trợ điều hướng bằng bàn phím.
+- Đảm bảo màu chữ và màu nền dễ nhìn, không làm thay đổi bố cục.
+
+### Kết quả AI cung cấp
+- Đối chiếu với style.css hiện có: hover đổi màu và transition đã có sẵn; cần sửa transition: all thành danh sách thuộc tính cụ thể và thêm các phần còn thiếu.
+- CSS bổ sung: transform: translateY(-1px) và box-shadow khi hover; outline: 2px solid var(--color-accent) kèm outline-offset: 3px cho :focus-visible; :active để phản hồi khi nhấn; @media (prefers-reduced-motion: reduce) để tắt chuyển động cho người dùng cần giảm hiệu ứng.
+- Độ tương phản: chữ/nền ở trạng thái thường và hover đạt khoảng 18:1 (vượt mức AA 4,5:1); vòng focus khoảng 4,2:1 (vượt mức 3:1 cho thành phần giao diện).
+- Cách kiểm tra: nhấn Tab để xem vòng focus, rê chuột để xem hover, ép trạng thái bằng :hov trong DevTools, đo contrast ratio bằng bảng chọn màu, giả lập prefers-reduced-motion trong tab Rendering.
+
+### Phần tôi tự thực hiện / kiểm chứng
+- Thêm và sửa CSS trong css/style.css
+- Kiểm tra hover, focus bằng bàn phím và chuột trên trình duyệt.
+

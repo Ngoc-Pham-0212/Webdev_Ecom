@@ -274,7 +274,10 @@ button, input, select {
   font-weight: 600;
   cursor: pointer;
   border: none;
-  transition: all 0.2s ease;
+   transition: background-color 0.2s ease,
+              color 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
 .btn-add-card {
@@ -284,10 +287,35 @@ button, input, select {
   border: 1px solid var(--color-primary);
 }
 
+/* ĐÃ CÓ phần màu, THÊM transform + box-shadow */
 .btn-add-card:hover {
   background-color: var(--color-primary);
   color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
+/* THÊM: vòng focus cho người dùng bàn phím */
+.btn-add-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* THÊM: phản hồi khi nhấn */
+.btn-add-card:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* THÊM: tôn trọng người dùng tắt hiệu ứng chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  .btn-add-card:hover {
+    transform: none;
+  }
+}
+
 
 /* ==========================================================================
    4. SLIDE-OUT CART (NGĂN KÉO GIỎ HÀNG)
