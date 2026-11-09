@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.best-shared {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.best-shared h2 {
+  font-size: 36px;
+  font-weight: normal;
+  color: #333333;
+  margin: 25px 0 15px;
+}
+
+.best-shared h2 strong {
+  color: #00aeef;
+  font-weight: bold;
+}
+
+.lead-text {
+  font-style: italic;
+  color: #444444;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.btn-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-list li {
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.btn-list a {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #333333;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-size: 15px;
+}

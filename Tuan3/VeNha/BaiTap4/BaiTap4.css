@@ -1,0 +1,6 @@
+ul li {
+  display: inline-block; /* Căn các phần tử li nằm ngang */
+  background-color: #00ffff; /* Màu nền xanh cyan */
+  padding: 8px 25px; /* Tăng khoảng cách lề trong (trên/dưới 8px, trái/phải 25px) */
+  margin-right: 15px; /* Khoảng cách giữa các ô */
+}

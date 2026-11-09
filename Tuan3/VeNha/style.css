@@ -1,82 +1,158 @@
-/* d. Lấy logo BIT làm hình nền kích cỡ 30px, lặp lại và cố định[cite: 1] */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background-image: url('https://bit.ueh.edu.vn/wp-content/uploads/2017/06/BIT_logo.png');
-    background-size: 30px;
-    background-repeat: repeat;
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-    padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+  padding: 40px 20px;
 }
 
-/* Khung chứa nội dung bài tập */
 .container {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 8px;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* a. Đại học UEH: chữ xanh, canh giữa, in đậm, gạch chân, 30px[cite: 1] */
-.paragraph-a {
-    color: blue;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 30px;
+/* Header Profile Card */
+.profile-card {
+  background: #ffffff;
+  padding: 35px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
 }
 
-/* b. Khoa CNTKD: chữ đỏ, canh phải, in nghiêng, viền chấm màu vàng bo góc, màu nền xám, 15px, chữ mờ 50%[cite: 1] */
-.paragraph-b {
-    color: red;
-    text-align: right;
-    font-style: italic;
-    border: 2px dotted yellow;
-    border-radius: 10px;
-    background-color: gray;
-    font-size: 15px;
-    opacity: 0.5;
-    padding: 10px;
+.avatar-wrapper {
+  margin-bottom: 15px;
 }
 
-/* c. Định dạng chữ BIT-UEH lấy đúng mã CSS text-shadow từ trình tạo font[cite: 1] */
-.paragraph-c {
-    font-size: 45px;
-    font-weight: bold;
-    text-align: center;
-    color: #A7DD3C;
-    background-color: #111; /* Đặt nền tối để làm nổi bật hiệu ứng phát sáng */
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    text-shadow: 2px 0 0px #800040, 
-                 3px 2px 0px rgba(77,0,38,0.5), 
-                 3px 0 3px #FF002B, 
-                 5px 0 3px #800015, 
-                 6px 2px 3px rgba(77,0,13,0.5), 
-                 6px 0 9px #FF5500, 
-                 8px 0 9px #802A00, 
-                 9px 2px 9px rgba(77,25,0,0.5), 
-                 9px 0 18px #FFD500, 
-                 11px 0 18px #806A00, 
-                 12px 2px 18px rgba(77,66,0,0.5), 
-                 12px 0 30px #D4FF00, 
-                 14px 0 30px #6A8000, 
-                 15px 2px 30px rgba(64,77,0,0.5), 
-                 15px 0 45px #80FF00, 
-                 17px 0 45px #408000, 
-                 17px 2px 45px rgba(38,77,0,0.5);
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #0056b3;
 }
 
-/* e. Rộng: 100px; Cao: 50px; Ẩn nội dung khi bị tràn; Cắt nội dung bị tràn bằng dấu ...; white-space: nowrap[cite: 1] */
-.paragraph-e {
-    width: 100px;
-    height: 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border: 1px solid #ccc;
-    padding: 5px;
-    background-color: #f9f9f9;
+.name {
+  font-size: 26px;
+  color: #1a252f;
+  margin-bottom: 5px;
+}
+
+.title {
+  font-weight: 600;
+  color: #0056b3;
+  margin-bottom: 10px;
+}
+
+.bio {
+  font-size: 14px;
+  color: #666;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f2f5;
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Section Bài tập */
+.exercises-section h2 {
+  font-size: 20px;
+  color: #1a252f;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Thẻ bài tập */
+.exercise-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.exercise-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: #0056b3;
+}
+
+.card-icon {
+  font-size: 28px;
+  color: #0056b3;
+  margin-bottom: 12px;
+}
+
+.card-info h3 {
+  font-size: 18px;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+.card-info p {
+  font-size: 13px;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+}
+
+.btn-link {
+  font-size: 13px;
+  font-weight: bold;
+  color: #0056b3;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #888;
 }
