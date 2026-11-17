@@ -3,126 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Labs - Phát triển Ứng dụng Thương mại Điện tử</title>
+    <title>JavaScript Labs (Lab 08 – Lab 10) | Webdev_Ecom</title>
     <style>
+        :root {
+            --primary: #1e3c72;
+            --primary-light: #2a5298;
+            --accent: #0ea5e9;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            line-height: 1.6;
-            padding: 30px 15px;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.65;
+            padding: 32px 16px;
         }
+
         .container {
-            max-width: 850px;
+            max-width: 920px;
             margin: 0 auto;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
             overflow: hidden;
         }
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: #ffffff;
-            padding: 32px;
+            padding: 36px 36px 30px;
         }
+
+        .course-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.16);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            margin-bottom: 12px;
+        }
+
         header h1 {
-            font-size: 1.85rem;
+            font-size: 1.9rem;
             margin-bottom: 8px;
+            letter-spacing: -0.3px;
         }
+
         header p {
-            font-size: 0.95rem;
+            font-size: 0.96rem;
             opacity: 0.9;
         }
-        .toolbar {
+
+        /* Top Quick Links */
+        .quick-bar {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 32px;
-            background-color: #eef2f7;
-            border-bottom: 1px solid #dce3ec;
+            gap: 12px;
+            padding: 14px 36px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
             font-size: 0.9rem;
-            color: #475569;
         }
-        .toolbar a {
-            color: #1e3c72;
+
+        .quick-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        .quick-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            padding: 30px 36px;
+        }
+
+        section {
+            margin-bottom: 34px;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Student Info Grid */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            background: #f8fafc;
+            padding: 18px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-item span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .profile-item strong {
+            font-size: 0.98rem;
+            color: var(--text-main);
+        }
+
+        .profile-item a {
+            color: var(--primary-light);
             text-decoration: none;
             font-weight: 600;
         }
-        .toolbar a:hover {
+
+        .profile-item a:hover {
             text-decoration: underline;
         }
+
+        /* Lab Cards */
         .lab-list {
-            list-style: none;
-            padding: 24px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
-        .lab-item {
+
+        .lab-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
-            padding: 18px 20px;
-            margin-bottom: 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            gap: 20px;
+            padding: 20px 22px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #ffffff;
+            transition: all 0.22s ease;
         }
-        .lab-item:last-child {
-            margin-bottom: 0;
-        }
-        .lab-item:hover {
-            border-color: #2a5298;
-            background-color: #f8fafc;
+
+        .lab-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 6px 16px rgba(42, 82, 152, 0.1);
             transform: translateY(-2px);
         }
-        .lab-info h3 {
-            font-size: 1.1rem;
-            color: #1a202c;
-            margin-bottom: 4px;
+
+        .lab-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
         }
-        .lab-info p {
-            font-size: 0.9rem;
-            color: #4a5568;
-            margin-bottom: 4px;
-        }
-        .lab-info span {
-            font-size: 0.82rem;
-            color: #64748b;
+
+        .lab-tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 6px;
             font-family: Consolas, monospace;
         }
-        .btn-view {
+
+        .lab-info h3 {
+            font-size: 1.12rem;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .lab-info p {
+            font-size: 0.92rem;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .pill {
+            font-size: 0.78rem;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 2px 9px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .lab-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 135px;
+        }
+
+        .btn-primary {
             display: inline-block;
-            padding: 10px 18px;
-            background-color: #2a5298;
+            text-align: center;
+            padding: 10px 16px;
+            background-color: var(--primary-light);
             color: #ffffff;
             text-decoration: none;
+            border-radius: 7px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            text-align: center;
+            padding: 6px 12px;
+            background-color: #f8fafc;
+            color: #334155;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
             border-radius: 6px;
-            font-size: 0.92rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            white-space: nowrap;
         }
-        .btn-view:hover {
-            background-color: #1e3c72;
+
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
         }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(to right, #f8fafc, #f1f5f9);
+            border-left: 4px solid var(--primary-light);
+            padding: 20px 24px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .summary-box p {
+            font-size: 0.95rem;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 14px;
+        }
+
+        .ecom-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            list-style: none;
+        }
+
+        .ecom-highlights li {
+            background: #ffffff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 0.86rem;
+            color: #1e293b;
+        }
+
+        .ecom-highlights li strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 16px;
+            padding: 18px 24px;
+            background: #f8fafc;
             font-size: 0.85rem;
-            color: #718096;
-            border-top: 1px solid #edf2f7;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
         }
-        @media (max-width: 600px) {
-            .lab-item {
+
+        @media (max-width: 650px) {
+            header, .quick-bar, main {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .lab-card {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .btn-view {
+            .lab-actions {
                 width: 100%;
-                text-align: center;
+                flex-direction: row;
+            }
+            .btn-primary, .btn-secondary {
+                flex: 1;
             }
         }
     </style>
@@ -131,46 +339,143 @@
 
 <div class="container">
     <header>
-        <h1>JavaScript Labs (Lab 08 – Lab 10)</h1>
-        <p>Tổng hợp bài thực hành lập trình phía máy khách – Phát triển Ứng dụng Thương mại Điện tử</p>
+        <div class="course-badge">Phát triển Ứng dụng Thương mại Điện tử • Webdev_Ecom</div>
+        <h1>Tổng hợp Thực hành JavaScript Labs (Lab 08 – Lab 10)</h1>
+        <p>Hệ thống bài tập lập trình phía máy khách theo giáo trình <em>Fundamentals of Web Development (2nd Edition)</em></p>
     </header>
 
-    <div class="toolbar">
-        <span>Sinh viên: <strong>Ngoc-Pham-0212</strong></span>
-        <a href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/tree/main/JavaScript-Labs" target="_blank">Xem mã nguồn trên GitHub →</a>
+    <div class="quick-bar">
+        <span>Trạng thái: <strong>Hoàn thành 29/29 Exercises</strong></span>
+        <div class="quick-links">
+            <a href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/tree/main/JavaScript-Labs" target="_blank">Mã nguồn GitHub ↗</a>
+            <a href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/blob/main/JavaScript-Labs/README.md" target="_blank">Tài liệu README.md ↗</a>
+        </div>
     </div>
 
-    <ul class="lab-list">
-        <li class="lab-item">
-            <div class="lab-info">
-                <h3>Lab 08: JavaScript 1 – Language Foundations</h3>
-                <p>Cú pháp cơ bản, biến, mảng, đối tượng, hàm và xử lý dữ liệu mảng đối tượng.</p>
-                <span>Exercise 8.1 – 8.11</span>
+    <main>
+        <!-- 1. Thông tin cá nhân -->
+        <section>
+            <h2 class="section-title">Thông tin sinh viên thực hiện</h2>
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <span>Họ và tên</span>
+                    <strong>Phạm Bảo Ngọc</strong>
+                </div>
+                <div class="profile-item">
+                    <span>Mã số sinh viên</span>
+                    <strong>31241027390</strong>
+                </div>
+                <div class="profile-item">
+                    <span>Lớp / Nhóm học phần</span>
+                    <strong>26C1INF50902701/Nhóm 4</strong>
+                </div>
+                <div class="profile-item">
+                    <span>Tài khoản GitHub</span>
+                    <a href="https://github.com/Ngoc-Pham-0212" target="_blank">@Ngoc-Pham-0212</a>
+                </div>
             </div>
-            <a class="btn-view" href="https://ngoc-pham-0212.github.io/Webdev_Ecom/JavaScript-Labs/Lab%2008/">Xem Lab 08</a>
-        </li>
+        </section>
 
-        <li class="lab-item">
-            <div class="lab-info">
-                <h3>Lab 09: JavaScript 2 – DOM and Events</h3>
-                <p>Truy xuất cây DOM, thao tác phần tử, lắng nghe sự kiện và kiểm tra hợp lệ biểu mẫu.</p>
-                <span>Exercise 9.1 – 9.8</span>
-            </div>
-            <a class="btn-view" href="https://ngoc-pham-0212.github.io/Webdev_Ecom/JavaScript-Labs/Lab%2009/">Xem Lab 09</a>
-        </li>
+        <!-- 2. Danh sách liên kết các bài Lab -->
+        <section>
+            <h2 class="section-title">Danh sách bài thực hành</h2>
+            <div class="lab-list">
+                <!-- Lab 08 -->
+                <article class="lab-card">
+                    <div class="lab-info">
+                        <div class="lab-meta">
+                            <span class="lab-tag">Exercise 8.1 – 8.11</span>
+                        </div>
+                        <h3>Lab 08: JavaScript 1 – Language Foundations</h3>
+                        <p>Nắm vững cú pháp cơ bản, biến, cấu trúc điều khiển, vòng lặp, mảng, đối tượng, mảng đối tượng và tổ chức hàm tái sử dụng.</p>
+                        <div class="tech-pills">
+                            <span class="pill">Variables &amp; Loops</span>
+                            <span class="pill">Arrays &amp; Objects</span>
+                            <span class="pill">Functions</span>
+                            <span class="pill">Console Debugging</span>
+                        </div>
+                    </div>
+                    <div class="lab-actions">
+                        <a class="btn-primary" href="https://ngoc-pham-0212.github.io/Webdev_Ecom/JavaScript-Labs/Lab%2008/">Mở Lab 08</a>
+                        <a class="btn-secondary" href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/tree/main/JavaScript-Labs/Lab%2008" target="_blank">Thư mục GitHub</a>
+                    </div>
+                </article>
 
-        <li class="lab-item">
-            <div class="lab-info">
-                <h3>Lab 10: JavaScript 3 – jQuery</h3>
-                <p>Bộ chọn jQuery, xử lý sự kiện, hiệu ứng động và gửi yêu cầu bất đồng bộ AJAX/jqXHR.</p>
-                <span>Exercise 10.1 – 10.10</span>
+                <!-- Lab 09 -->
+                <article class="lab-card">
+                    <div class="lab-info">
+                        <div class="lab-meta">
+                            <span class="lab-tag">Exercise 9.1 – 9.8</span>
+                        </div>
+                        <h3>Lab 09: JavaScript 2 – DOM and Events</h3>
+                        <p>Truy xuất và thao tác cây DOM, duyệt quan hệ giữa các nút phần tử, xử lý sự kiện người dùng, gỡ lỗi Debugger và xác thực biểu mẫu.</p>
+                        <div class="tech-pills">
+                            <span class="pill">DOM Manipulation</span>
+                            <span class="pill">Event Listeners</span>
+                            <span class="pill">DevTools Debugger</span>
+                            <span class="pill">Form Validation</span>
+                        </div>
+                    </div>
+                    <div class="lab-actions">
+                        <a class="btn-primary" href="https://ngoc-pham-0212.github.io/Webdev_Ecom/JavaScript-Labs/Lab%2009/">Mở Lab 09</a>
+                        <a class="btn-secondary" href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/tree/main/JavaScript-Labs/Lab%2009" target="_blank">Thư mục GitHub</a>
+                    </div>
+                </article>
+
+                <!-- Lab 10 -->
+                <article class="lab-card">
+                    <div class="lab-info">
+                        <div class="lab-meta">
+                            <span class="lab-tag">Exercise 10.1 – 10.10</span>
+                        </div>
+                        <h3>Lab 10: JavaScript 3 – jQuery</h3>
+                        <p>Tích hợp thư viện jQuery, sử dụng bộ chọn nâng cao, chèn phần tử động, thiết kế hiệu ứng chuyển động và gọi API bất đồng bộ qua jqXHR.</p>
+                        <div class="tech-pills">
+                            <span class="pill">jQuery Selectors</span>
+                            <span class="pill">Animations</span>
+                            <span class="pill">AJAX GET</span>
+                            <span class="pill">jqXHR Error Handling</span>
+                        </div>
+                    </div>
+                    <div class="lab-actions">
+                        <a class="btn-primary" href="https://ngoc-pham-0212.github.io/Webdev_Ecom/JavaScript-Labs/Lab%2010/">Mở Lab 10</a>
+                        <a class="btn-secondary" href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/tree/main/JavaScript-Labs/Lab%2010" target="_blank">Thư mục GitHub</a>
+                    </div>
+                </article>
             </div>
-            <a class="btn-view" href="https://ngoc-pham-0212.github.io/Webdev_Ecom/JavaScript-Labs/Lab%2010/">Xem Lab 10</a>
-        </li>
-    </ul>
+        </section>
+
+        <!-- 3. Tổng kết kiến thức & Ứng dụng Thương mại điện tử -->
+        <section>
+            <h2 class="section-title">Tổng kết kiến thức &amp; Ứng dụng Thương mại Điện tử</h2>
+            <div class="summary-box">
+                <p>
+                    Thông qua chuỗi bài thực hành Lab 08–10, sinh viên đã hệ thống hóa được kiến thức lập trình web phía máy khách, gồm cú pháp JavaScript, thao tác DOM, xử lý sự kiện, ứng dụng jQuery và gửi yêu cầu bất đồng bộ. Trong đó, Lab 09 mang lại giá trị thực tiễn cao nhất khi làm rõ cơ chế tải trang và xác thực biểu mẫu, dù việc phân biệt nút DOM cùng thao tác trên trình gỡ lỗi ban đầu còn nhiều trở ngại. Những kỹ thuật này là cơ sở để phát triển các chức năng thương mại điện tử như kiểm tra dữ liệu đăng ký, cập nhật giỏ hàng, hiệu ứng xem trước sản phẩm và tải dữ liệu động. Thời gian tới, kỹ năng gỡ lỗi và tối ưu hóa mã nguồn cần được tiếp tục hoàn thiện.
+                </p>
+                <ul class="ecom-highlights">
+                    <li>
+                        <strong>Xác thực biểu mẫu (Form Validation)</strong>
+                        Kiểm tra định dạng email, mật khẩu và trường bắt buộc trước khi gửi đơn hàng hoặc đăng ký tài khoản.
+                    </li>
+                    <li>
+                        <strong>Cập nhật giỏ hàng tức thì</strong>
+                        Thao tác DOM để tính lại tổng tiền, thay đổi số lượng hoặc xóa sản phẩm trực tiếp trên giao diện.
+                    </li>
+                    <li>
+                        <strong>Hiệu ứng tương tác sản phẩm</strong>
+                        Ứng dụng jQuery để phóng to ảnh, chuyển đổi tab mô tả và tạo phản hồi trực quan khi người dùng thao tác.
+                    </li>
+                    <li>
+                        <strong>Tải dữ liệu bất đồng bộ (AJAX)</strong>
+                        Nạp danh mục sản phẩm, lọc kết quả tìm kiếm và xử lý thông báo lỗi kết nối mà không cần tải lại trang.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        Webdev_Ecom &bull; JavaScript-Labs &bull; 2026
+        Ngoc-Pham-0212 &bull; Webdev_Ecom &bull; JavaScript-Labs &bull; 2026
     </footer>
 </div>
 
