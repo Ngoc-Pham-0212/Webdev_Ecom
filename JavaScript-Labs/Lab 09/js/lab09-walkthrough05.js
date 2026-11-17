@@ -8,5 +8,11 @@ function outputBox(num) {
    box += "</div>";
    return box;
 }
+window.addEventListener("load", function() {
+    var divToGet = document.getElementById("div1");
+    alert(divToGet.innerHTML);
+});
 
 /* your code goes here */
+var divToGet = document.getElementById("div1");
+alert(divToGet.innerHTML);
