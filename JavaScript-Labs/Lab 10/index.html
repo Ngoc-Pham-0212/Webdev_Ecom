@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 10 - JavaScript 3: jQuery</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            padding: 28px 32px;
+        }
+        header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 6px;
+        }
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 32px;
+            background-color: #eef2f7;
+            border-bottom: 1px solid #dce3ec;
+            font-size: 0.9rem;
+        }
+        .toolbar a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .toolbar a:hover {
+            text-decoration: underline;
+        }
+        .exercise-list {
+            list-style: none;
+            padding: 20px 32px;
+        }
+        .exercise-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .exercise-item:hover {
+            border-color: #2a5298;
+            background-color: #f8fafc;
+            transform: translateY(-2px);
+        }
+        .exercise-info h3 {
+            font-size: 1.05rem;
+            color: #1a202c;
+            margin-bottom: 3px;
+        }
+        .exercise-info span {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-family: Consolas, monospace;
+        }
+        .btn-view {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #2a5298;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .btn-view:hover {
+            background-color: #1e3c72;
+        }
+        footer {
+            text-align: center;
+            padding: 16px;
+            font-size: 0.85rem;
+            color: #718096;
+            border-top: 1px solid #edf2f7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Lab 10: JavaScript 3 – jQuery</h1>
+        <p>Danh sách các bài thực hành (Walkthroughs &amp; Exercises) – Phát triển Ứng dụng Thương mại Điện tử</p>
+    </header>
+
+    <div class="toolbar">
+        <a href="../index.html">← Quay lại danh sách Labs</a>
+        <a href="Lab10.pdf" target="_blank">Xem đề bài Lab10.pdf</a>
+    </div>
+
+    <ul class="exercise-list">
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.1 &amp; 10.2: Set Up jQuery &amp; Basic Selectors</h3>
+                <span>lab10-walkthrough01.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough01.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.3: Advanced Selectors</h3>
+                <span>lab10-walkthrough03.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough03.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.4: jQuery Listeners</h3>
+                <span>lab10-walkthrough04.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough04.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.5: Inserting DOM Elements</h3>
+                <span>lab10-walkthrough05.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough05.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.6: Simple jQuery Animation</h3>
+                <span>lab10-walkthrough06.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough06.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.7: More jQuery Animation</h3>
+                <span>lab10-walkthrough07.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough07.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.8: Complex Animations</h3>
+                <span>lab10-walkthrough08.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough08.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.9: GET Requests</h3>
+                <span>lab10-walkthrough09.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough09.html" target="_blank">Mở bài</a>
+        </li>
+
+        <li class="exercise-item">
+            <div class="exercise-info">
+                <h3>Exercise 10.10: jqXHR Handling</h3>
+                <span>lab10-walkthrough10.html</span>
+            </div>
+            <a class="btn-view" href="lab10-walkthrough10.html"
