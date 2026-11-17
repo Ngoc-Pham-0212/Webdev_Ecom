@@ -9,10 +9,13 @@ function outputBox(num) {
    return box;
 }
 window.addEventListener("load", function() {
-    var divToGet = document.getElementById("div1");
-    alert(divToGet.innerHTML);
+    var divs = document.querySelectorAll(".movingDiv");
+    for (var i = 0; i < divs.length; i++) {
+        divs[i].addEventListener("mouseover", function(e) {
+            alert("triggered by " + e.target.id);
+        });
+    }
 });
 
 /* your code goes here */
-var divToGet = document.getElementById("div1");
-alert(divToGet.innerHTML);
+
