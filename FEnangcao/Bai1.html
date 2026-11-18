@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tạo responsive</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+
+initial-scale=1.0">
+    <style>
+        .left,
+        .right {
+            height: 400px;
+        }
+
+        .left {
+            background: blue;
+            float: left;
+            width: 70%;
+        }
+
+        .right {
+            background: red;
+            float: right;
+            width: 30%;
+        }
+
+        @media only screen and (max-width: 768px) {
+
+            .left,
+            .right {
+                width: 100%
+            }
+        }
+
+        /* Nếu chiều rộng của trình duyệt từ 320px đến 480px thì ẩn class Right */
+        @media only screen and (max-width: 479px) and (min-width: 321px) {
+            .right {
+                display: none;
+            }
+        }
+
+        /* Nếu ở chế độ máy in thì ẩn class Left */
+        @media only print {
+            .left {
+                display: none;
+            }
+
+            .right {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="left">
+            LEFT
+            <picture>
+                <source width = "400" media="(min-width:600px)" srcset="https://ueh.edu.vn/images/logo-header.png">
+                <source width = "400" media="(min-width:400px)" srcset="https://ctd.ueh.edu.vn/wp-content/uploads/2023/07/cropped-TV_trang_CTD.png">
+                <img alt="..." src="https://ueh.edu.vn/schools/college/images/logo/bit-header-logo.png">
+            </picture>
+        </div>
+        <div class="right">
+            RIGHT
+        </div>
+    </div>
+</body>
+
+</html>
