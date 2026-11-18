@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-end Nâng Cao - Phạm Bảo Ngọc</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #003d82;
+            --accent: #e65100;
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #ffffff;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.65rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.15s ease, background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #bf360c;
+        }
+
+        .btn-outline {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--bg);
+        }
+
+        .card-header h2 {
+            font-size: 1.35rem;
+            color: var(--primary-dark);
+        }
+
+        .badge {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+        }
+
+        ul.topic-list {
+            margin: 0.75rem 0 1.25rem 1.25rem;
+        }
+
+        ul.topic-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        code.inline {
+            background-color: #eef2ff;
+            color: #3730a3;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.9em;
+        }
+
+        /* Code Block */
+        .code-wrapper {
+            position: relative;
+            margin-top: 1rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.15rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: #374151;
+            color: #f9fafb;
+            border: none;
+            border-radius: 4px;
+            padding: 0.3rem 0.65rem;
+            font-size: 0.78rem;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #4b5563;
+        }
+
+        .action-row {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .btn-card {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 0.55rem 1.1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-card:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.55rem 1.1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e5e7eb;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.75rem 1rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Áp dụng kiến thức Responsive @media đã học */
+        @media only screen and (max-width: 768px) {
+            header h1 {
+                font-size: 1.55rem;
+            }
+            .card {
+                padding: 1.25rem;
+            }
+        }
+
+        @media only screen and (max-width: 479px) {
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tổng Hợp Bài Tập Front-End Nâng Cao</h1>
+        <p>Sinh viên: <strong>Phạm Bảo Ngọc</strong> | Học phần Phát triển Web Thương mại Điện tử (UEH - CTD)</p>
+        <div class="nav-links">
+            <!-- Link trực tiếp tới file Bai1.html cùng thư mục FEnangcao -->
+            <a href="Bai1.html" class="btn btn-primary">Mở Bài Tập 1 (Bai1.html)</a>
+            <a href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/tree/main/FEnangcao" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub Repository</a>
+            <a href="https://ngoc-pham-0212.github.io/Webdev_Ecom/FEnangcao/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub Pages</a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Phần 1: Bài 1 - Responsive Web Design -->
+        <section class="card">
+            <div class="card-header">
+                <h2>1. Responsive Web Design với CSS @media &amp; Thẻ &lt;picture&gt;</h2>
+                <span class="badge">Bài tập: Bai1.html</span>
+            </div>
+            <p>Nội dung thực hành xây dựng bố cục thích ứng (Responsive Layout) trên nhiều kích thước màn hình và thiết bị khác nhau:</p>
+            <ul class="topic-list">
+                <li><strong>Breakpoint Tablet / Mobile (<code class="inline">max-width: 768px</code>):</strong> Chuyển bố cục 2 cột <code class="inline">.left</code> và <code class="inline">.right</code> thành <code class="inline">width: 100%</code> để hiển thị xếp chồng.</li>
+                <li><strong>Breakpoint Màn hình nhỏ (<code class="inline">321px</code> – <code class="inline">479px</code>):</strong> Ẩn thành phần <code class="inline">.right</code> bằng thuộc tính <code class="inline">display: none</code>.</li>
+                <li><strong>Chế độ In ấn (<code class="inline">@media only print</code>):</strong> Ẩn khối <code class="inline">.left</code> và mở rộng khối <code class="inline">.right</code> ra toàn bộ chiều ngang (<code class="inline">width: 100%</code>) khi người dùng in trang.</li>
+                <li><strong>Responsive Images với <code class="inline">&lt;picture&gt;</code>:</strong> Sử dụng các thẻ <code class="inline">&lt;source media="(min-width: 600px)"&gt;</code> và <code class="inline">&lt;source media="(min-width: 400px)"&gt;</code> kết hợp thẻ <code class="inline">&lt;img&gt;</code> dự phòng để hiển thị logo UEH / CTD phù hợp với độ rộng khung nhìn.</li>
+            </ul>
+
+            <div class="code-wrapper">
+                <button class="copy-btn" onclick="copyCode('css-code', this)">Copy</button>
+                <pre id="css-code">@media only screen and (max-width: 768px) {
+    .left, .right {
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 479px) and (min-width: 321px) {
+    .right {
+        display: none;
+    }
+}
+@media only print {
+    .left {
+        display: none;
+    }
+    .right {
+        width: 100%;
+    }
+}</pre>
+            </div>
+
+            <div class="action-row">
+                <a href="Bai1.html" class="btn btn-card">Xem kết quả Bai1.html &rarr;</a>
+                <a href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/blob/main/FEnangcao/Bai1.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Xem mã nguồn trên GitHub</a>
+            </div>
+        </section>
+
+        <!-- Phần 2: Thực hành Chrome DevTools & JavaScript (Dino) -->
+        <section class="card">
+            <div class="card-header">
+                <h2>2. Thực Hành Chrome DevTools Console &amp; JavaScript (Game Dino)</h2>
+                <span class="badge">DOM &amp; Runtime JS</span>
+            </div>
+            <p>Khai thác tab <strong>Console</strong> trong trình duyệt để truy xuất và thay đổi thuộc tính/phương thức của đối tượng JavaScript đang chạy (game T-Rex Runner):</p>
+            <ul class="topic-list">
+                <li><strong>Truy xuất đối tượng game:</strong> Sử dụng <code class="inline">Runner.getInstance()</code> để lấy thực thể điều khiển trò chơi.</li>
+                <li><strong>Ghi đè phương thức (Method Overriding):</strong> Gán lại <code class="inline">this.gameOver = () =&gt; {}</code> (Arrow Function) hoặc <code class="inline">function () {}</code> để vô hiệu hóa trạng thái thua cuộc khi va chạm.</li>
+                <li><strong>Điều chỉnh tốc độ &amp; vật lý nhảy (IIFE):</strong> Can thiệp trực tiếp vào các tham số <code class="inline">setSpeed()</code>, <code class="inline">maxSpeed</code>, <code class="inline">acceleration</code> và cấu hình <code class="inline">tRex.config</code> (<code class="inline">gravity</code>, <code class="inline">maxJumpHeight</code>, <code class="inline">minJumpHeight</code>, <code class="inline">initialJumpVelocity</code>).</li>
+            </ul>
+
+            <div class="code-wrapper">
+                <button class="copy-btn" onclick="copyCode('dino-code', this)">Copy</button>
+                <pre id="dino-code">(() =&gt; {
+    const r = Runner.getInstance();
+
+    if (!r) {
+        console.log("Không tìm thấy game Dino!");
+        return;
+    }
+
+    // Vô hiệu hóa Game Over
+    r.gameOver = () =&gt; {};
+
+    // Tăng tốc độ
+    r.setSpeed(15);
+    r.config.maxSpeed = 30;
+    r.config.acceleration = 0.003;
+
+    // Điều chỉnh độ cao nhảy
+    r.tRex.config.gravity = 0.3;
+    r.tRex.config.maxJumpHeight = 10;
+    r.tRex.config.minJumpHeight = 10;
+    r.tRex.config.initialJumpVelocity = -18;
+
+    console.log("Đã áp dụng cấu hình Dino!");
+})();</pre>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Lưu trữ tại GitHub: <a href="https://github.com/Ngoc-Pham-0212/Webdev_Ecom/tree/main/FEnangcao" target="_blank" rel="noopener noreferrer">Ngoc-Pham-0212/Webdev_Ecom/FEnangcao</a></p>
+    </footer>
+
+    <script>
+        function copyCode(elementId, button) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = "Đã chép!";
+                setTimeout(() => {
+                    button.innerText = originalText;
+                }, 1500);
+            });
+        }
+    </script>
+
+</body>
+</html>
