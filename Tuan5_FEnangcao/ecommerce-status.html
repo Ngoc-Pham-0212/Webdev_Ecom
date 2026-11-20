@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý đơn hàng | Grimm DC</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">GRIMM DC</a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Bộ sưu tập</a></li>
+          <li><a href="index.html">Áo thun</a></li>
+          <li><a href="index.html">Áo khoác</a></li>
+          <li><a href="index.html">Phụ kiện</a></li>
+          <li><a href="ecommerce-status.html" class="active">Đơn hàng</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="row">
+
+        <!-- Cột trái: Manage Orders -->
+        <aside class="col-sm-4 col-md-3 sidebar-categories" style="margin-bottom: 24px;">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0; margin-bottom: 14px;">Quản lý tài khoản</h3>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Tất cả đơn hàng</a>
+            <a href="#" class="list-group-item">Đánh giá của tôi</a>
+            <a href="#" class="list-group-item">Mã giảm giá (2)</a>
+            <a href="#" class="list-group-item">Địa chỉ giao hàng</a>
+          </div>
+        </aside>
+
+        <!-- Cột phải: Orders Status -->
+        <div class="col-sm-8 col-md-9">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0; margin-bottom: 14px;">Trạng thái đơn hàng</h3>
+
+          <!-- Đơn 1 -->
+          <div class="thumbnail" style="padding: 15px; margin-bottom: 14px;">
+            <div class="row" style="display: flex; align-items: center; flex-wrap: wrap;">
+              <div class="col-xs-3 col-sm-2">
+                <img class="img-responsive" src="images/ao-doc-lap.webp" alt="Áo Độc Lập" style="border-radius: 4px;">
+              </div>
+              <div class="col-xs-9 col-sm-4">
+                <a href="ecommerce-detail.html" style="font-weight: 700;">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</a>
+                <p class="text-muted" style="font-size: 12px; margin: 4px 0 0;">Size: M</p>
+              </div>
+              <div class="col-xs-3 col-sm-1">x1</div>
+              <div class="col-xs-4 col-sm-2" style="font-weight: 700;">380.000₫</div>
+              <div class="col-xs-5 col-sm-2">
+                <button class="btn btn-sm btn-default">Đang giao (Track)</button>
+              </div>
+              <div class="col-xs-12 col-sm-1 text-right">
+                <a href="#" style="font-size: 12px; color: #337ab7;">1 Tin nhắn</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Đơn 2 -->
+          <div class="thumbnail" style="padding: 15px; margin-bottom: 14px;">
+            <div class="row" style="display: flex; align-items: center; flex-wrap: wrap;">
+              <div class="col-xs-3 col-sm-2">
+                <img class="img-responsive" src="images/non-btx.webp" alt="Nón BTX" style="border-radius: 4px;">
+              </div>
+              <div class="col-xs-9 col-sm-4">
+                <a href="ecommerce-detail.html" style="font-weight: 700;">Nón BTX x Grimm DC</a>
+                <p class="text-muted" style="font-size: 12px; margin: 4px 0 0;">Freesize</p>
+              </div>
+              <div class="col-xs-3 col-sm-1">x1</div>
+              <div class="col-xs-4 col-sm-2" style="font-weight: 700;">350.000₫</div>
+              <div class="col-xs-5 col-sm-2">
+                <button class="btn btn-sm btn-success">Hoàn thành</button>
+              </div>
+              <div class="col-xs-12 col-sm-1 text-right">
+                <a href="#" style="font-size: 12px; color: #337ab7;">1 Tin nhắn</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Đơn 3 -->
+          <div class="thumbnail" style="padding: 15px; margin-bottom: 14px;">
+            <div class="row" style="display: flex; align-items: center; flex-wrap: wrap;">
+              <div class="col-xs-3 col-sm-2">
+                <img class="img-responsive" src="images/bomber-btx.webp" alt="Bomber BTX" style="border-radius: 4px;">
+              </div>
+              <div class="col-xs-9 col-sm-4">
+                <a href="ecommerce-detail.html" style="font-weight: 700;">Áo bomber BTX x Grimm DC</a>
+                <p class="text-muted" style="font-size: 12px; margin: 4px 0 0;">Size: L</p>
+              </div>
+              <div class="col-xs-3 col-sm-1">x1</div>
+              <div class="col-xs-4 col-sm-2" style="font-weight: 700;">749.000₫</div>
+              <div class="col-xs-5 col-sm-2">
+                <button class="btn btn-sm btn-danger">Đã hủy</button>
+              </div>
+              <div class="col-xs-12 col-sm-1 text-right">
+                <a href="#" style="font-size: 12px; color: #888;">0 Tin nhắn</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
