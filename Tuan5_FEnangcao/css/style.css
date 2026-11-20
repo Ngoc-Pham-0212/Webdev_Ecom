@@ -203,17 +203,6 @@ button, input, select {
   transform: scale(1.05);
 }
 
-.badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
 .discount-badge {
   background-color: var(--color-accent);
   color: #fff;
@@ -840,4 +829,22 @@ a, a:hover, a:focus {
   .cart-footer {
     padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   }
+}
+/* Khôi phục cỡ chữ chuẩn 16px (ghi đè font-size: 10px của Bootstrap 3) */
+html {
+  font-size: 16px;
+}
+
+/* Đưa số lượng trong Danh mục về đúng lề phải và tăng cỡ chữ rõ nét */
+.sidebar-categories .list-group-item {
+  font-size: 15px;
+  padding: 12px 15px;
+}
+
+.sidebar-categories .list-group-item > .badge {
+  position: static;
+  float: right;
+  font-size: 13px;
+  padding: 4px 9px;
+  margin-top: 1px;
 }

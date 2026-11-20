@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grimm DC Concept Store | Cửa hàng trực tuyến</title>
 
-  <!-- Bootstrap 3.4.1 & Star Rating CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css">
-  <!-- CSS giao diện Grimm DC -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -361,7 +359,7 @@
 
     <div class="cart-body">
       <ul class="cart-item-list" id="cart-item-list">
-        <li class="cart-item" data-price="380000" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng">
+        <li class="cart-item" data-price="380000" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" data-variant="Size: M">
           <img class="cart-item-img" src="images/ao-doc-lap.webp" alt="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng">
           <div class="cart-item-info">
             <h3 class="cart-item-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h3>
@@ -386,7 +384,7 @@
           </div>
         </li>
 
-        <li class="cart-item" data-price="350000" data-name="Nón BTX x Grimm DC">
+        <li class="cart-item" data-price="350000" data-name="Nón BTX x Grimm DC" data-variant="Màu: Đen / Freesize">
           <img class="cart-item-img" src="images/non-btx.webp" alt="Nón BTX x Grimm DC">
           <div class="cart-item-info">
             <h3 class="cart-item-name">Nón BTX x Grimm DC</h3>
@@ -431,139 +429,10 @@
     </footer>
   </div>
 
-  <!-- ================= THƯ VIỆN JS & SCRIPT TƯƠNG TÁC ================= -->
+  <!-- ================= THƯ VIỆN JS & FILE JS RIÊNG ================= -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      const FREESHIP_THRESHOLD = 800000;
-
-      function formatCurrency(num) {
-        return num.toLocaleString('vi-VN') + '₫';
-      }
-
-      function openCart() {
-        $('#cart-drawer, #cart-backdrop').addClass('is-open');
-        $('body').addClass('body-lock-scroll');
-      }
-
-      function closeCart() {
-        $('#cart-drawer, #cart-backdrop').removeClass('is-open');
-        $('body').removeClass('body-lock-scroll');
-      }
-
-      function updateCartSummary() {
-        let totalQty = 0;
-        let subtotal = 0;
-
-        $('#cart-item-list .cart-item').each(function() {
-          const price = parseInt($(this).data('price'), 10);
-          const qty = parseInt($(this).find('.qty-input').val(), 10);
-          totalQty += qty;
-          subtotal += price * qty;
-        });
-
-        $('#cart-badge-count').text(totalQty);
-        $('#cart-count-label').text(`(${totalQty} món)`);
-        $('#cart-subtotal, #btn-checkout-price').text(formatCurrency(subtotal));
-
-        if (subtotal >= FREESHIP_THRESHOLD) {
-          $('#freeship-text').html('Chúc mừng! Đơn hàng của bạn được <strong>Miễn phí vận chuyển</strong>');
-          $('#freeship-progress-fill').css('width', '100%');
-        } else {
-          const remaining = FREESHIP_THRESHOLD - subtotal;
-          const percent = Math.min(100, Math.round((subtotal / FREESHIP_THRESHOLD) * 100));
-          $('#freeship-text').html(`Mua thêm <strong class="highlight-price">${formatCurrency(remaining)}</strong> để được <strong>Miễn phí vận chuyển</strong>`);
-          $('#freeship-progress-fill').css('width', percent + '%');
-        }
-      }
-
-      function addItemToCart(name, price, variant, img) {
-        let existingItem = null;
-        $('#cart-item-list .cart-item').each(function() {
-          if ($(this).data('name') === name) {
-            existingItem = $(this);
-            return false;
-          }
-        });
-
-        if (existingItem) {
-          const input = existingItem.find('.qty-input');
-          input.val(parseInt(input.val(), 10) + 1);
-        } else {
-          const newItemHtml = `
-            <li class="cart-item" data-price="${price}" data-name="${name}">
-              <img class="cart-item-img" src="${img}" alt="${name}">
-              <div class="cart-item-info">
-                <h3 class="cart-item-name">${name}</h3>
-                <div class="cart-item-pricing"><span class="price">${formatCurrency(price)}</span></div>
-                <div class="cart-item-variant"><span class="variant-fixed">${variant}</span></div>
-                <div class="cart-item-actions">
-                  <div class="quantity-control">
-                    <button type="button" class="qty-btn btn-qty-minus">-</button>
-                    <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
-                    <button type="button" class="qty-btn btn-qty-plus">+</button>
-                  </div>
-                  <button type="button" class="item-remove-btn">Xóa</button>
-                </div>
-              </div>
-            </li>`;
-          $('#cart-item-list').append(newItemHtml);
-        }
-
-        updateCartSummary();
-        openCart();
-      }
-
-      // Sự kiện mở / đóng giỏ hàng
-      $('#open-cart-btn').on('click', function(e) { e.preventDefault(); openCart(); });
-      $('#close-cart-btn, #continue-shopping-btn, #cart-backdrop').on('click', closeCart);
-
-      // Thêm sản phẩm vào giỏ
-      $(document).on('click', '.btn-add-card, .btn-add-cross', function() {
-        addItemToCart($(this).data('name'), parseInt($(this).data('price'), 10), $(this).data('variant'), $(this).data('img'));
-      });
-
-      // Tăng / giảm / xóa item trong giỏ
-      $(document).on('click', '.btn-qty-plus', function() {
-        const input = $(this).siblings('.qty-input');
-        input.val(parseInt(input.val(), 10) + 1);
-        updateCartSummary();
-      });
-
-      $(document).on('click', '.btn-qty-minus', function() {
-        const input = $(this).siblings('.qty-input');
-        const val = parseInt(input.val(), 10);
-        if (val > 1) {
-          input.val(val - 1);
-          updateCartSummary();
-        }
-      });
-
-      $(document).on('click', '.item-remove-btn', function() {
-        $(this).closest('.cart-item').remove();
-        updateCartSummary();
-      });
-
-      // Lọc sản phẩm theo danh mục (đồng bộ cả thanh menu trên và sidebar trái)
-      $('.nav-filter').on('click', function(e) {
-        e.preventDefault();
-        const filter = $(this).data('filter');
-        $('.nav-filter').removeClass('active');
-        $(`.nav-filter[data-filter="${filter}"]`).addClass('active');
-
-        if (filter === 'all') {
-          $('.product-card').fadeIn(200);
-          $('#catalog-title').text('Tất cả sản phẩm');
-        } else {
-          $('.product-card').hide();
-          $(`.product-card[data-category="${filter}"]`).fadeIn(200);
-          $('#catalog-title').text($(this).clone().children().remove().end().text().trim());
-        }
-      });
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

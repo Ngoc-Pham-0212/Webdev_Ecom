@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng | Grimm DC</title>
 
-  <!-- Bootstrap 3.4.1, Star Rating & xZoom CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css">
   <link rel="stylesheet" href="https://unpkg.com/xzoom/dist/xzoom.css">
@@ -28,13 +27,13 @@
       </nav>
       <div class="header-actions" style="display: flex; align-items: center; gap: 14px;">
         <a href="ecommerce-status.html" style="color: #111; font-size: 18px;"><i class="glyphicon glyphicon-user"></i></a>
-        <a href="index.html" class="cart-trigger-btn" aria-label="Giỏ hàng">
+        <a href="#cart-drawer" class="cart-trigger-btn" id="open-cart-btn" aria-label="Giỏ hàng">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
-          <span class="cart-badge">2</span>
+          <span class="cart-badge" id="cart-badge-count">2</span>
         </a>
       </div>
     </div>
@@ -120,15 +119,15 @@
 
                 <form role="form">
                   <div class="form-group">
-                    <label>Số lượng:</label>
+                    <label for="detail-qty">Số lượng:</label>
                     <input type="number" class="form-control" id="detail-qty" value="1" min="1" max="10" style="width: 90px;">
                   </div>
 
                   <div class="form-group">
-                    <label>Màu sắc:</label>
-                    <select class="form-control" style="width: 160px;">
-                      <option>Trắng kem</option>
-                      <option>Đen</option>
+                    <label for="detail-color">Màu sắc:</label>
+                    <select class="form-control" id="detail-color" style="width: 160px;">
+                      <option value="Trắng kem">Trắng kem</option>
+                      <option value="Đen">Đen</option>
                     </select>
                   </div>
 
@@ -143,49 +142,60 @@
                   </div>
 
                   <div class="form-group" style="margin-top: 20px; display: flex; gap: 10px;">
-                    <button type="button" class="btn btn-default">Liên hệ tư vấn</button>
-                    <a href="index.html" class="btn btn-success" style="background-color: #111; border-color: #111;">Thêm vào giỏ hàng</a>
+                    <a href="ecommerce-status.html" class="btn btn-default">Liên hệ tư vấn</a>
+                    <button type="button" class="btn btn-success" id="btn-detail-add-cart"
+                            data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng"
+                            data-price="380000"
+                            data-img="images/ao-doc-lap.webp"
+                            style="background-color: #111; border-color: #111;">
+                      Thêm vào giỏ hàng
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
           </div>
 
-          <!-- Khu vực Đánh giá & Bình luận (Thay glyphicon-star bằng bootstrap-star-rating) -->
+          <!-- Khu vực Đánh giá & Bình luận -->
           <div class="well" id="comments" style="background-color: #fff; border-radius: 8px;">
             <div class="clearfix">
-              <h4 class="pull-left" style="font-weight: 700; margin-top: 6px;">Đánh giá sản phẩm (3)</h4>
+              <h4 class="pull-left" style="font-weight: 700; margin-top: 6px;">Đánh giá sản phẩm</h4>
               <button type="button" class="btn btn-success pull-right" id="toggle-review-btn">Viết đánh giá</button>
             </div>
 
-            <!-- Form gửi đánh giá mới (cho phép người dùng chọn sao trực tiếp) -->
             <div id="new-review-box" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+              <div class="form-group">
+                <label for="reviewer-name">Tên của bạn:</label>
+                <input type="text" id="reviewer-name" class="form-control" placeholder="Nhập họ tên..." style="max-width: 300px;">
+              </div>
               <div class="form-group">
                 <label>Chọn số sao đánh giá:</label>
                 <input id="user-star-input" class="rating rating-loading" value="5" data-min="0" data-max="5" data-step="0.5" data-size="sm" data-show-clear="false">
               </div>
               <div class="form-group">
-                <textarea class="form-control" rows="3" placeholder="Nhập cảm nhận của bạn về chất liệu và form áo..."></textarea>
+                <textarea id="reviewer-comment" class="form-control" rows="3" placeholder="Nhập cảm nhận của bạn về chất liệu và form áo..."></textarea>
               </div>
-              <button type="button" class="btn btn-primary" onclick="alert('Cảm ơn bạn đã gửi đánh giá!')">Gửi đánh giá</button>
+              <button type="button" class="btn btn-primary" id="submit-review-btn">Gửi đánh giá</button>
             </div>
 
-            <hr>
-            <div class="row">
-              <div class="col-md-12">
-                <input class="rating rating-loading" value="5" data-min="0" data-max="5" data-size="xs" data-readonly="true" data-show-clear="false" data-show-caption="false">
-                <strong>Minh Khoa</strong> <span class="pull-right text-muted">1 ngày trước</span>
-                <p class="text-muted" style="font-size: 12px;">Từ <em>TP. Hồ Chí Minh</em></p>
-                <p>Chất vải dày dặn, đường may tỉ mỉ, hộp đóng gói chỉnh chu. Rất đáng tiền!</p>
+            <div id="review-list">
+              <hr>
+              <div class="row">
+                <div class="col-md-12">
+                  <input class="rating rating-loading" value="5" data-min="0" data-max="5" data-size="xs" data-readonly="true" data-show-clear="false" data-show-caption="false">
+                  <strong>Minh Khoa</strong> <span class="pull-right text-muted">1 ngày trước</span>
+                  <p class="text-muted" style="font-size: 12px;">Từ <em>TP. Hồ Chí Minh</em></p>
+                  <p>Chất vải dày dặn, đường may tỉ mỉ, hộp đóng gói chỉnh chu. Rất đáng tiền!</p>
+                </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-12">
-                <input class="rating rating-loading" value="4.5" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-readonly="true" data-show-clear="false" data-show-caption="false">
-                <strong>Lan Anh</strong> <span class="pull-right text-muted">3 ngày trước</span>
-                <p class="text-muted" style="font-size: 12px;">Từ <em>Hà Nội</em></p>
-                <p>Mình cao 1m62 mặc size M rộng rãi thoải mái, hình in sắc nét.</p>
+              <hr>
+              <div class="row">
+                <div class="col-md-12">
+                  <input class="rating rating-loading" value="4.5" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-readonly="true" data-show-clear="false" data-show-caption="false">
+                  <strong>Lan Anh</strong> <span class="pull-right text-muted">3 ngày trước</span>
+                  <p class="text-muted" style="font-size: 12px;">Từ <em>Hà Nội</em></p>
+                  <p>Mình cao 1m62 mặc size M rộng rãi thoải mái, hình in sắc nét.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -239,32 +249,80 @@
     </div>
   </main>
 
+  <!-- ================= GIỎ HÀNG TRƯỢT (DÙNG CHUNG VỚI MAIN.JS) ================= -->
+  <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+
+  <div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <header class="cart-header">
+      <div class="cart-header-title">
+        <h2 id="cart-title">Giỏ hàng của bạn</h2>
+        <span class="cart-count-label" id="cart-count-label">(2 món)</span>
+      </div>
+      <button type="button" class="cart-close-btn" id="close-cart-btn" aria-label="Đóng giỏ hàng">&times;</button>
+    </header>
+
+    <div class="cart-freeship-banner">
+      <p class="freeship-text" id="freeship-text">Mua thêm <strong class="highlight-price">70.000₫</strong> để được <strong>Miễn phí vận chuyển</strong></p>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="freeship-progress-fill" style="width: 91%;"></div>
+      </div>
+    </div>
+
+    <div class="cart-body">
+      <ul class="cart-item-list" id="cart-item-list">
+        <li class="cart-item" data-price="380000" data-name="Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng" data-variant="Size: M">
+          <img class="cart-item-img" src="images/ao-doc-lap.webp" alt="Áo Độc Lập">
+          <div class="cart-item-info">
+            <h3 class="cart-item-name">Áo Độc Lập - Tự Do - Hạnh Phúc // Trắng</h3>
+            <div class="cart-item-pricing"><span class="price">380.000₫</span></div>
+            <div class="cart-item-variant"><span class="variant-fixed">Size: M</span></div>
+            <div class="cart-item-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn btn-qty-minus">-</button>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
+                <button type="button" class="qty-btn btn-qty-plus">+</button>
+              </div>
+              <button type="button" class="item-remove-btn">Xóa</button>
+            </div>
+          </div>
+        </li>
+        <li class="cart-item" data-price="350000" data-name="Nón BTX x Grimm DC" data-variant="Màu: Đen / Freesize">
+          <img class="cart-item-img" src="images/non-btx.webp" alt="Nón BTX">
+          <div class="cart-item-info">
+            <h3 class="cart-item-name">Nón BTX x Grimm DC</h3>
+            <div class="cart-item-pricing"><span class="price">350.000₫</span></div>
+            <div class="cart-item-variant"><span class="variant-fixed">Màu: Đen / Freesize</span></div>
+            <div class="cart-item-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn btn-qty-minus">-</button>
+                <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
+                <button type="button" class="qty-btn btn-qty-plus">+</button>
+              </div>
+              <button type="button" class="item-remove-btn">Xóa</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <footer class="cart-footer">
+      <div class="cart-summary-row">
+        <span class="summary-label">Tạm tính:</span>
+        <span class="summary-value" id="cart-subtotal">730.000₫</span>
+      </div>
+      <a href="ecommerce-status.html" class="btn btn-checkout">
+        <span>TIẾN HÀNH THANH TOÁN</span>
+        <span class="btn-checkout-price" id="btn-checkout-price">730.000₫</span>
+      </a>
+      <button type="button" class="btn btn-continue-shopping" id="continue-shopping-btn">Tiếp tục mua sắm</button>
+    </footer>
+  </div>
+
+  <!-- ================= THƯ VIỆN JS & FILE JS RIÊNG ================= -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"></script>
   <script src="https://unpkg.com/xzoom/dist/xzoom.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      // Khởi tạo xZoom phóng to ảnh
-      $('.xzoom, .xzoom-gallery').xzoom({
-        zoomWidth: 400,
-        title: true,
-        tint: '#333',
-        Xoffset: 15
-      });
-
-      // Chọn nút Size active
-      $('.size-selector .btn').on('click', function() {
-        $('.size-selector .btn').removeClass('active');
-        $(this).addClass('active');
-      });
-
-      // Ẩn/hiện khung viết đánh giá
-      $('#toggle-review-btn').on('click', function() {
-        $('#new-review-box').slideToggle(200);
-      });
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

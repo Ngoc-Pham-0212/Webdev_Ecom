@@ -30,12 +30,12 @@
 
         <!-- Cột trái: Manage Orders -->
         <aside class="col-sm-4 col-md-3 sidebar-categories" style="margin-bottom: 24px;">
-          <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0; margin-bottom: 14px;">Quản lý tài khoản</h3>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0; margin-bottom: 14px;">Quản lý đơn hàng</h3>
           <div class="list-group">
-            <a href="#" class="list-group-item active">Tất cả đơn hàng</a>
-            <a href="#" class="list-group-item">Đánh giá của tôi</a>
-            <a href="#" class="list-group-item">Mã giảm giá (2)</a>
-            <a href="#" class="list-group-item">Địa chỉ giao hàng</a>
+            <a href="#" class="list-group-item order-filter-btn active" data-status="all">Tất cả đơn hàng</a>
+            <a href="#" class="list-group-item order-filter-btn" data-status="shipping">Đang giao hàng</a>
+            <a href="#" class="list-group-item order-filter-btn" data-status="completed">Đã hoàn thành</a>
+            <a href="#" class="list-group-item order-filter-btn" data-status="cancelled">Đã hủy</a>
           </div>
         </aside>
 
@@ -44,7 +44,7 @@
           <h3 style="font-size: 1.25rem; font-weight: 800; margin-top: 0; margin-bottom: 14px;">Trạng thái đơn hàng</h3>
 
           <!-- Đơn 1 -->
-          <div class="thumbnail" style="padding: 15px; margin-bottom: 14px;">
+          <div class="thumbnail order-item-row" data-status="shipping" style="padding: 15px; margin-bottom: 14px;">
             <div class="row" style="display: flex; align-items: center; flex-wrap: wrap;">
               <div class="col-xs-3 col-sm-2">
                 <img class="img-responsive" src="images/ao-doc-lap.webp" alt="Áo Độc Lập" style="border-radius: 4px;">
@@ -56,16 +56,16 @@
               <div class="col-xs-3 col-sm-1">x1</div>
               <div class="col-xs-4 col-sm-2" style="font-weight: 700;">380.000₫</div>
               <div class="col-xs-5 col-sm-2">
-                <button class="btn btn-sm btn-default">Đang giao (Track)</button>
+                <button class="btn btn-sm btn-default">Theo dõi</button>
               </div>
               <div class="col-xs-12 col-sm-1 text-right">
-                <a href="#" style="font-size: 12px; color: #337ab7;">1 Tin nhắn</a>
+                <a href="#" style="font-size: 12px; color: #337ab7;">1 Message</a>
               </div>
             </div>
           </div>
 
           <!-- Đơn 2 -->
-          <div class="thumbnail" style="padding: 15px; margin-bottom: 14px;">
+          <div class="thumbnail order-item-row" data-status="completed" style="padding: 15px; margin-bottom: 14px;">
             <div class="row" style="display: flex; align-items: center; flex-wrap: wrap;">
               <div class="col-xs-3 col-sm-2">
                 <img class="img-responsive" src="images/non-btx.webp" alt="Nón BTX" style="border-radius: 4px;">
@@ -77,16 +77,16 @@
               <div class="col-xs-3 col-sm-1">x1</div>
               <div class="col-xs-4 col-sm-2" style="font-weight: 700;">350.000₫</div>
               <div class="col-xs-5 col-sm-2">
-                <button class="btn btn-sm btn-success">Hoàn thành</button>
+                <button class="btn btn-sm btn-success">Đã hoàn thành</button>
               </div>
               <div class="col-xs-12 col-sm-1 text-right">
-                <a href="#" style="font-size: 12px; color: #337ab7;">1 Tin nhắn</a>
+                <a href="#" style="font-size: 12px; color: #337ab7;">1 Message</a>
               </div>
             </div>
           </div>
 
           <!-- Đơn 3 -->
-          <div class="thumbnail" style="padding: 15px; margin-bottom: 14px;">
+          <div class="thumbnail order-item-row" data-status="cancelled" style="padding: 15px; margin-bottom: 14px;">
             <div class="row" style="display: flex; align-items: center; flex-wrap: wrap;">
               <div class="col-xs-3 col-sm-2">
                 <img class="img-responsive" src="images/bomber-btx.webp" alt="Bomber BTX" style="border-radius: 4px;">
@@ -101,7 +101,7 @@
                 <button class="btn btn-sm btn-danger">Đã hủy</button>
               </div>
               <div class="col-xs-12 col-sm-1 text-right">
-                <a href="#" style="font-size: 12px; color: #888;">0 Tin nhắn</a>
+                <a href="#" style="font-size: 12px; color: #888;">0 Messages</a>
               </div>
             </div>
           </div>
@@ -113,5 +113,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
