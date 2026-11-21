@@ -223,3 +223,28 @@ $(document).ready(function () {
     }
   });
 });
+// [THÊM MỚI] Tìm kiếm nhanh sản phẩm theo tên trên Desktop & Mobile
+  $('#search-input-desktop, #search-input-mobile').on('keyup', function () {
+    const keyword = $(this).val().toLowerCase().trim();
+    $('.product-card').each(function () {
+      const productName = $(this).find('.product-name').text().toLowerCase();
+      $(this).toggle(productName.indexOf(keyword) > -1);
+    });
+  });
+
+  // [THÊM MỚI] Xử lý form đăng nhập trong Modal (#myModal)
+  $('#login-form').on('submit', function (e) {
+    e.preventDefault();
+    const email = $('#login-email').val();
+    alert('Đăng nhập thành công với tài khoản: ' + email);
+    $('#myModal').modal('hide');
+  });
+  // Bật/tắt menu điều hướng trên Mobile
+  $('#mobile-menu-toggle').on('click', function () {
+    $('#main-nav').toggleClass('is-open');
+  });
+
+  // Tự động đóng menu mobile sau khi chọn danh mục
+  $('#main-nav a').on('click', function () {
+    $('#main-nav').removeClass('is-open');
+  });

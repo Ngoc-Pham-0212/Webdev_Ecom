@@ -848,3 +848,49 @@ html {
   padding: 4px 9px;
   margin-top: 1px;
 }
+/* Sửa giao diện Header & Grid trên Mobile (< 768px) */
+.brand-logo {
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .brand-logo {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .mobile-search-form {
+    flex: 1;
+    max-width: 170px;
+    margin: 0 8px;
+  }
+
+  /* Ẩn menu ngang và chuyển thành menu xổ xuống khi bấm nút 3 gạch */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    padding: 12px 20px;
+    z-index: 99;
+  }
+
+  .main-nav.is-open {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Lưới sản phẩm 2 cột vừa vặn trên màn hình nhỏ */
+  .catalog-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
