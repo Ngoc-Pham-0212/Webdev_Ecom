@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Flappy Mèo – Bài thực hành 3</title>
+    <style>
+        :root {
+            --bg: #f4f1ea;
+            --fg: #222;
+            --card: #fff;
+            --bd: #d8d2c4;
+            color-scheme: light dark
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #1c1c1e;
+                --fg: #eee;
+                --card: #2a2a2d;
+                --bd: #444
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #1c1c1e;
+            --fg: #eee;
+            --card: #2a2a2d;
+            --bd: #444
+        }
+
+        :root {
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html,
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid var(--bd);
+            border-radius: 10px;
+            background: #8fd3f4;
+            touch-action: none
+        }
+
+        .help {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: 10px;
+            padding: 8px 14px;
+            margin-top: 10px;
+            font-size: 14px;
+            max-width: 400px;
+            line-height: 1.5
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 22px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--bd);
+            background: var(--card);
+            color: var(--fg)
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c" width="400" height="600"></canvas>
+    <div class="help">⬇ <b>Phím mũi tên xuống</b> để nhảy (Space/↑ cũng được) · <b>P</b> tạm dừng · <b>R</b> chơi lại
+    </div>
+    <button id="tap">Nhảy (cho điện thoại)</button>
+    <script>
+        const cv = document.getElementById('c'), ctx = cv.getContext('2d'), W = 400, H = 600, GROUND = 60;
+        // Mức độ: điểm bắt đầu, interval (ms) theo đề bài
+        const LEVELS = [{ from: 0, interval: 40 }, { from: 5, interval: 30 }, { from: 20, interval: 25 }, { from: 40, interval: 20 }];
+        const WIN_SCORE = 50, BASE_INTERVAL = 40;
+        const G = 1500, FLAP = -430, MAXFALL = 620, BASE_SPEED = 150;
+        let best = 0; try { best = +localStorage.getItem('meo-best') || 0 } catch (e) { }
+        let s; // state
+        function reset() {
+            s = { state: 'ready', bird: { x: 90, y: 260, vy: 0, r: 14 }, pipes: [], score: 0, level: 1, dist: 0, t: 0, paused: false };
+            addPipe(W + 60);
+        }
+        function levelInfo() { let i = 0; for (let k = 0; k < LEVELS.length; k++)if (s.score >= LEVELS[k].from) i = k; return { n: i + 1, ...LEVELS[i] } }
+        function addPipe(x) {
+            const L = levelInfo(), gap = 170 - (L.n - 1) * 8, min = 90, max = H - GROUND - 90 - gap;
+            s.pipes.push({ x, w: 60, gap, top: min + Math.random() * (max - min), passed: false });
+        }
+        function flap() {
+            if (s.state === 'ready') s.state = 'play';
+            if (s.state === 'play' && !s.paused) s.bird.vy = FLAP;
+        }
+        addEventListener('keydown', e => {
+            if (['ArrowDown', 'ArrowUp', ' '].includes(e.key)) {
+                e.preventDefault();
+                if (!e.repeat) {
+                    if (e.key === ' ' && (s.state === 'over' || s.state === 'win')) reset();  // Space = chơi lại
+                    else flap();
+                }
+                if (e.key === 'p' || e.key === 'P') { if (s.state === 'play') s.paused = !s.paused }
+                if (e.key === 'r' || e.key === 'R') reset();
+            }
+        });
+        document.getElementById('tap').addEventListener('click', () => { s.state === 'over' || s.state === 'win' ? reset() : flap() });
+        cv.addEventListener('pointerdown', () => { s.state === 'over' || s.state === 'win' ? reset() : flap() });
+
+        function update(dt) {
+            if (s.state === 'ready') { s.t += dt; s.bird.y = 260 + Math.sin(s.t * 4) * 8; return }
+            if (s.state !== 'play' || s.paused) return;
+            const L = levelInfo(); s.level = L.n;
+            const k = BASE_INTERVAL / L.interval;           // hệ số tốc độ theo Interval
+            const b = s.bird;
+            b.vy = Math.min(b.vy + G * dt, MAXFALL); b.y += b.vy * dt;
+            const sp = BASE_SPEED * k * dt;
+            s.pipes.forEach(p => p.x -= sp);
+            s.dist += sp;
+            const last = s.pipes[s.pipes.length - 1];
+            if (last.x < W - 230) addPipe(W + 10);
+            if (s.pipes[0].x + s.pipes[0].w < 0) s.pipes.shift();
+            s.pipes.forEach(p => {
+                if (!p.passed && p.x + p.w < b.x) {
+                    p.passed = true; s.score++;
+                    if (s.score >= WIN_SCORE) { s.state = 'win'; save() }
+                }
+                const hr = b.r - 3; // hitbox nhỏ hơn hình vẽ → dễ chơi hơn
+                if (b.x + hr > p.x && b.x - hr < p.x + p.w && (b.y - hr < p.top || b.y + hr > p.top + p.gap)) die();
+            });
+            if (b.y + b.r > H - GROUND || b.y - b.r < 0) die();
+        }
+        function die() { if (s.state === 'play') { s.state = 'over'; save() } }
+        function save() { if (s.score > best) { best = s.score; try { localStorage.setItem('meo-best', best) } catch (e) { } } }
+
+        function drawPipe(x, y, w, h, capTop) {
+            if (h <= 0) return;
+            ctx.fillStyle = '#b5482f'; ctx.fillRect(x, y, w, h);
+            ctx.strokeStyle = '#7d2e1c'; ctx.lineWidth = 1;
+            for (let r = y; r < y + h; r += 14) {
+                ctx.beginPath(); ctx.moveTo(x, r); ctx.lineTo(x + w, r); ctx.stroke();
+                const off = ((r - y) / 14 | 0) % 2 ? 15 : 0;
+                for (let c = x + off; c < x + w; c += 30) { ctx.beginPath(); ctx.moveTo(c, r); ctx.lineTo(c, r + 14); ctx.stroke() }
+            }
+            const cy = capTop ? y + h - 18 : y;
+            ctx.fillStyle = '#4a4a4a'; ctx.fillRect(x - 5, cy, w + 10, 18);
+            ctx.fillStyle = '#6a6a6a'; ctx.fillRect(x - 5, cy, w + 10, 5);
+        }
+        function drawBird() {
+            const b = s.bird; ctx.save(); ctx.translate(b.x, b.y);
+            ctx.rotate(Math.max(-0.5, Math.min(1, b.vy / 600)));
+            ctx.fillStyle = '#f2a33c';
+            ctx.beginPath(); ctx.moveTo(-12, -8); ctx.lineTo(-10, -22); ctx.lineTo(-2, -12); ctx.fill();   // tai
+            ctx.beginPath(); ctx.moveTo(12, -8); ctx.lineTo(10, -22); ctx.lineTo(2, -12); ctx.fill();
+            ctx.beginPath(); ctx.arc(0, 0, b.r + 2, 0, 7); ctx.fill();                                      // đầu
+            ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(-6, -3, 4, 0, 7); ctx.arc(6, -3, 4, 0, 7); ctx.fill();
+            ctx.fillStyle = '#111'; ctx.beginPath(); ctx.arc(-5, -3, 2, 0, 7); ctx.arc(7, -3, 2, 0, 7); ctx.fill();
+            ctx.fillStyle = '#e0577a'; ctx.beginPath(); ctx.moveTo(-3, 4); ctx.lineTo(3, 4); ctx.lineTo(0, 8); ctx.fill();
+            ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
+            [[-4, -14, 6], [-4, 1, 6], [4, -14, 6], [4, 1, 6]].forEach(() => { });
+            ctx.beginPath(); ctx.moveTo(-8, 6); ctx.lineTo(-20, 3); ctx.moveTo(-8, 8); ctx.lineTo(-20, 10);
+            ctx.moveTo(8, 6); ctx.lineTo(20, 3); ctx.moveTo(8, 8); ctx.lineTo(20, 10); ctx.stroke();
+            ctx.restore();
+        }
+        function text(t, x, y, size, align, color) {
+            ctx.font = 'bold ' + size + 'px system-ui,sans-serif'; ctx.textAlign = align || 'left';
+            ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(0,0,0,.55)'; ctx.strokeText(t, x, y); ctx.fillStyle = color || '#fff'; ctx.fillText(t, x, y)
+        }
+        function draw() {
+            const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#8fd3f4'); g.addColorStop(1, '#d6f0ff');
+            ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+            s.pipes.forEach(p => { drawPipe(p.x, -4, p.w, p.top + 4, true); drawPipe(p.x, p.top + p.gap, p.w, H - GROUND - p.top - p.gap, false) });
+            ctx.fillStyle = '#7bc043'; ctx.fillRect(0, H - GROUND, W, GROUND);
+            ctx.fillStyle = '#5a9e2f'; ctx.fillRect(0, H - GROUND, W, 8);
+            drawBird();
+            const L = levelInfo();
+            text('Level ' + L.n, 12, 30, 22, 'left', '#ffe066');
+            text('Interval ' + L.interval, 12, 54, 14, 'left');
+            text(String(s.score), W / 2, 60, 44, 'center');
+            text('Best ' + best, W - 12, 30, 16, 'right');
+            if (s.state === 'ready') text('Nhấn ↓ để bắt đầu', W / 2, H / 2 + 80, 24, 'center');
+            if (s.paused) text('TẠM DỪNG', W / 2, H / 2, 34, 'center');
+            if (s.state === 'over') { text('Game over', W / 2, H / 2 - 10, 38, 'center', '#ff6b6b'); text('Điểm: ' + s.score + ' · nhấn R để chơi lại', W / 2, H / 2 + 30, 18, 'center') }
+            if (s.state === 'win') { text('🎉 CHIẾN THẮNG!', W / 2, H / 2 - 10, 36, 'center', '#ffe066'); text('Đạt ' + WIN_SCORE + ' điểm · nhấn R để chơi lại', W / 2, H / 2 + 30, 18, 'center') }
+        }
+        let last = performance.now();
+        function loop(now) { const dt = Math.min((now - last) / 1000, 0.033); last = now; update(dt); draw(); requestAnimationFrame(loop) }
+        reset(); requestAnimationFrame(loop);
+    </script>
+</body>
+
+</html>
