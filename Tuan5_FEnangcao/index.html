@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nộp bài Lab Tuần 5 | 26C1INF50902701</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #f4f6f9;
+      color: #1f2937;
+      line-height: 1.6;
+      padding: 32px 16px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Thẻ thông tin sinh viên */
+    .student-card {
+      background: #111827;
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .student-card .course-tag {
+      display: inline-block;
+      background: #e53935;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .student-card h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .student-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 15px;
+    }
+
+    .student-info-grid span.label {
+      color: #9ca3af;
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .student-info-grid strong {
+      font-size: 16px;
+      color: #f9fafb;
+    }
+
+    /* Danh sách bài tập */
+    .lab-section {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .lab-header h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .folder-badge {
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      background: #f3f4f6;
+      color: #4b5563;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .link-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .link-item a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: #1f2937;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 12px 16px;
+      border-radius: 8px;
+      transition: all 0.18s ease;
+    }
+
+    .link-item a:hover {
+      background: #111827;
+      color: #ffffff;
+      border-color: #111827;
+      transform: translateX(4px);
+    }
+
+    .link-title {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .link-path {
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .link-item a:hover .link-path {
+      color: #d1d5db;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- THÔNG TIN SINH VIÊN -->
+    <header class="student-card">
+      <span class="course-tag">Phát triển ứng dụng Web • Tuần 5</span>
+      <h1>BÀI TẬP THỰC HÀNH FRONT-END NÂNG CAO</h1>
+      <div class="student-info-grid">
+        <div>
+          <span class="label">Họ và tên sinh viên</span>
+          <strong>PHẠM BẢO NGỌC</strong>
+        </div>
+        <div>
+          <span class="label">Mã số sinh viên (MSSV)</span>
+          <strong>31241027390</strong>
+        </div>
+        <div>
+          <span class="label">Mã lớp học phần</span>
+          <strong>26C1INF50902701</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- BÀI 1: E-COMMERCE BOOTSTRAP -->
+    <section class="lab-section">
+      <div class="lab-header">
+        <h2>Bài 1: Website Thương mại điện tử (Grimm DC)</h2>
+        <span class="folder-badge">Tuan5_FEnangcao/2.1/</span>
+      </div>
+      <ul class="link-list">
+        <li class="link-item">
+          <a href="2.1/index.html" target="_blank">
+            <span class="link-title">1.1. Trang chủ cửa hàng (index.html)</span>
+            <span class="link-path">Tuan5_FEnangcao/2.1/index.html &rarr;</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="2.1/ecommerce-detail.html" target="_blank">
+            <span class="link-title">1.2. Trang chi tiết sản phẩm (ecommerce-detail.html)</span>
+            <span class="link-path">Tuan5_FEnangcao/2.1/ecommerce-detail.html &rarr;</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="2.1/ecommerce-status.html" target="_blank">
+            <span class="link-title">1.3. Trang trạng thái đơn hàng (ecommerce-status.html)</span>
+            <span class="link-path">Tuan5_FEnangcao/2.1/ecommerce-status.html &rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- BÀI 2: JQUERY LMS -->
+    <section class="lab-section">
+      <div class="lab-header">
+        <h2>Bài 2: Truy xuất dữ liệu LMS bằng jQuery</h2>
+        <span class="folder-badge">Tuan5_FEnangcao/2.2/</span>
+      </div>
+      <ul class="link-list">
+        <li class="link-item">
+          <a href="2.2/Inbt5.js" target="_blank">
+            <span class="link-title">2.1. Code in ra bài nộp thứ 5 trên LMS (Inbt5.js)</span>
+            <span class="link-path">Tuan5_FEnangcao/2.2/Inbt5.js &rarr;</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="2.2/Hienthi.js" target="_blank">
+            <span class="link-title">2.2. Code hiển thị chủ đề, bài tập &amp; deadline (Hienthi.js)</span>
+            <span class="link-path">Tuan5_FEnangcao/2.2/Hienthi.js &rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- BÀI 3: FLAPPY MEO -->
+    <section class="lab-section">
+      <div class="lab-header">
+        <h2>Bài 3: Trò chơi Flappy Mèo</h2>
+        <span class="folder-badge">Tuan5_FEnangcao/2.3/</span>
+      </div>
+      <ul class="link-list">
+        <li class="link-item">
+          <a href="2.3/flappymeo.html" target="_blank">
+            <span class="link-title">3.1. Chơi game Flappy Mèo (flappymeo.html)</span>
+            <span class="link-path">Tuan5_FEnangcao/2.3/flappymeo.html &rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      Mã LHP: 26C1INF50902701 • Repository: Webdev_Ecom
+    </footer>
+  </div>
+
+</body>
+</html>
