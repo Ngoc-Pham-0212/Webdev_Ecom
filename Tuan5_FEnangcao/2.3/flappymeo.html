@@ -197,7 +197,7 @@
             if (s.state === 'ready') text('Nhấn ↓ để bắt đầu', W / 2, H / 2 + 80, 24, 'center');
             if (s.paused) text('TẠM DỪNG', W / 2, H / 2, 34, 'center');
             if (s.state === 'over') { text('Game over', W / 2, H / 2 - 10, 38, 'center', '#ff6b6b'); text('Điểm: ' + s.score + ' · nhấn Space để chơi lại', W / 2, H / 2 + 30, 18, 'center') }
-            if (s.state === 'win') { text('🎉 CHIẾN THẮNG!', W / 2, H / 2 - 10, 36, 'center', '#ffe066'); text('Đạt ' + WIN_SCORE + ' điểm · nhấn R để chơi lại', W / 2, H / 2 + 30, 18, 'center') }
+            if (s.state === 'win') { text('🎉 CHIẾN THẮNG!', W / 2, H / 2 - 10, 36, 'center', '#ffe066'); text('Đạt ' + WIN_SCORE + ' điểm · nhấn Space để chơi lại', W / 2, H / 2 + 30, 18, 'center') }
         }
         let last = performance.now();
         function loop(now) { const dt = Math.min((now - last) / 1000, 0.033); last = now; update(dt); draw(); requestAnimationFrame(loop) }
