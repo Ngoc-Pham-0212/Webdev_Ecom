@@ -1,5 +1,14 @@
 [
   {
+    "id": "1795580184923",
+    "title": "Làm bài lab",
+    "description": "",
+    "dueDate": "2026-11-30",
+    "priority": "high",
+    "category": "Công việc",
+    "completed": false
+  },
+  {
     "id": "1",
     "title": "Hoàn thiện báo cáo tuần và gửi quản lý",
     "description": "Tổng hợp số liệu KPI từ team Marketing và Sales",
