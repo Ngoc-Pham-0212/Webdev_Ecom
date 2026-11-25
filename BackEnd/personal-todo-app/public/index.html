@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Thư viện vẽ biểu đồ thống kê -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Header Navigation -->
+        <header class="navbar">
+            <div class="logo">✅ <span>TaskFlow</span></div>
+            <nav class="nav-tabs">
+                <button class="tab-btn active" data-tab="tasks-view">Công việc</button>
+                <button class="tab-btn" data-tab="stats-view">Thống kê</button>
+            </nav>
+        </header>
+
+        <!-- VIEW 1: QUẢN LÝ TASK -->
+        <main id="tasks-view" class="view-section active">
+            <div class="top-bar">
+                <div>
+                    <h1 id="view-title">Công việc hôm nay</h1>
+                    <p id="current-date" class="subtitle"></p>
+                </div>
+                <div class="view-toggles">
+                    <button id="btn-today" class="pill-btn active">Hôm nay</button>
+                    <button id="btn-all" class="pill-btn">Tất cả</button>
+                    <button id="btn-open-modal" class="primary-btn">+ Thêm Task</button>
+                </div>
+            </div>
+
+            <!-- Thanh Search & Filter -->
+            <div class="filter-bar">
+                <input type="text" id="search-input" placeholder="🔍 Tìm kiếm theo tên công việc...">
+                <select id="filter-status">
+                    <option value="all">Tất cả trạng thái</option>
+                    <option value="pending">Đang thực hiện</option>
+                    <option value="completed">Đã hoàn thành</option>
+                </select>
+                <select id="filter-priority">
+                    <option value="all">Mọi mức ưu tiên</option>
+                    <option value="high">Ưu tiên Cao</option>
+                    <option value="medium">Ưu tiên Trung bình</option>
+                    <option value="low">Ưu tiên Thấp</option>
+                </select>
+            </div>
+
+            <!-- Danh sách Task -->
+            <div id="task-list" class="task-list"></div>
+        </main>
+
+        <!-- VIEW 2: TRANG THỐNG KÊ -->
+        <main id="stats-view" class="view-section">
+            <div class="top-bar">
+                <h1>Thống kê hiệu suất</h1>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-label">Tổng số công việc</span>
+                    <h2 id="stat-total">0</h2>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label">Đã hoàn thành</span>
+                    <h2 id="stat-completed" class="text-green">0</h2>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label">Tỷ lệ hoàn thành</span>
+                    <h2 id="stat-rate" class="text-blue">0%</h2>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Trạng thái công việc</h3>
+                    <canvas id="statusChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Phân bổ theo danh mục</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL THÊM / SỬA TASK -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Thêm công việc mới</h2>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <label>Tiêu đề *</label>
+                    <input type="text" id="task-title" required placeholder="Nhập tên công việc...">
+                </div>
+                <div class="form-group">
+                    <label>Mô tả chi tiết</label>
+                    <textarea id="task-desc" rows="2" placeholder="Ghi chú thêm..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ngày thực hiện</label>
+                        <input type="date" id="task-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mức độ ưu tiên</label>
+                        <select id="task-priority">
+                            <option value="low">Thấp</option>
+                            <option value="medium" selected>Trung bình</option>
+                            <option value="high">Cao</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Danh mục</label>
+                    <select id="task-category">
+                        <option value="Công việc">Công việc</option>
+                        <option value="Cá nhân">Cá nhân</option>
+                        <option value="Học tập">Học tập</option>
+                        <option value="Sức khỏe">Sức khỏe</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="btn-close-modal" class="secondary-btn">Hủy</button>
+                    <button type="submit" class="primary-btn">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

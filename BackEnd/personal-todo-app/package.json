@@ -1,0 +1,12 @@
+{
+  "name": "personal-todo-app",
+  "version": "1.0.0",
+  "description": "Ứng dụng quản lý công việc cá nhân với Node.js, HTML, CSS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "title": "Hoàn thiện báo cáo tuần và gửi quản lý",
+    "description": "Tổng hợp số liệu KPI từ team Marketing và Sales",
+    "dueDate": "2026-11-25",
+    "priority": "high",
+    "category": "Công việc",
+    "completed": false
+  },
+  {
+    "id": "2",
+    "title": "Chạy bộ 5km công viên",
+    "description": "Duy trì nhịp tim dưới 150 bpm",
+    "dueDate": "2026-11-25",
+    "priority": "medium",
+    "category": "Sức khỏe",
+    "completed": true
+  },
+  {
+    "id": "3",
+    "title": "Đọc 20 trang sách Designing Data-Intensive Applications",
+    "description": "Chương 3: Storage and Retrieval",
+    "dueDate": "2026-11-25",
+    "priority": "low",
+    "category": "Học tập",
+    "completed": false
+  },
+  {
+    "id": "4",
+    "title": "Thanh toán tiền điện và Internet",
+    "description": "Chuyển khoản qua app ngân hàng trước 18h",
+    "dueDate": "2026-11-24",
+    "priority": "high",
+    "category": "Cá nhân",
+    "completed": true
+  },
+  {
+    "id": "5",
+    "title": "Code API cho dự án Todo App",
+    "description": "Viết CRUD endpoints bằng Express.js",
+    "dueDate": "2026-11-23",
+    "priority": "high",
+    "category": "Học tập",
+    "completed": true
+  },
+  {
+    "id": "6",
+    "title": "Dọn dẹp bàn làm việc",
+    "description": "Sắp xếp lại dây cáp và lau màn hình",
+    "dueDate": "2026-11-26",
+    "priority": "low",
+    "category": "Cá nhân",
+    "completed": false
+  }
+]
