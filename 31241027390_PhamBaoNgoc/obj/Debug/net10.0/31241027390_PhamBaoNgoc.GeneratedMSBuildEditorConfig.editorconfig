@@ -35,12 +35,52 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Genres/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Genres/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Genres/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Genres/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Genres/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Movies/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Movies/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Movies/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Movies/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Movies/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/NGỌC FILE HỌC/Phát triển ứng dụng TMĐT/Webdev_Ecom/31241027390_PhamBaoNgoc/Views/Shared/Error.cshtml]
