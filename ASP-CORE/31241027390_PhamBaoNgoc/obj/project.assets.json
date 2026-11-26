@@ -6570,11 +6570,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
+      "projectUniqueName": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
       "projectName": "31241027390_PhamBaoNgoc",
-      "projectPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
+      "projectPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
       "packagesPath": "C:\\Users\\NGOC\\.nuget\\packages\\",
-      "outputPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\obj\\",
+      "outputPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

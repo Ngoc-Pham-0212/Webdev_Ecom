@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zWAyGRrEh9I=",
+  "dgSpecHash": "4wnDN4dgAmE=",
   "success": true,
-  "projectFilePath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
+  "projectFilePath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NGOC\\.nuget\\packages\\azure.core\\1.50.0\\azure.core.1.50.0.nupkg.sha512",
     "C:\\Users\\NGOC\\.nuget\\packages\\azure.identity\\1.17.1\\azure.identity.1.17.1.nupkg.sha512",
@@ -142,9 +142,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
+      "projectPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
+      "filePath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
       "libraryId": "NuGet.Packaging",
       "targetGraphs": [
         "net10.0"
@@ -154,9 +154,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "Package 'NuGet.Protocol' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
+      "projectPath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
+      "filePath": "D:\\NGỌC FILE HỌC\\Phát triển ứng dụng TMĐT\\Webdev_Ecom\\ASP-CORE\\31241027390_PhamBaoNgoc\\31241027390_PhamBaoNgoc.csproj",
       "libraryId": "NuGet.Protocol",
       "targetGraphs": [
         "net10.0"
