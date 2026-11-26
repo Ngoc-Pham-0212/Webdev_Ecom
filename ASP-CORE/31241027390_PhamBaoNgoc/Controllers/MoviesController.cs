@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _31241027390_PhamBaoNgoc.Data;
 using _31241027390_PhamBaoNgoc.Models;
+using _31241027390_PhamBaoNgoc.Extension;
 
 namespace _31241027390_PhamBaoNgoc.Controllers
 {
@@ -73,15 +74,12 @@ namespace _31241027390_PhamBaoNgoc.Controllers
         }
 
         // POST: Movies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Movie movie)
         {
             if (ModelState.IsValid)
             {
-                // Không upload thì dùng ảnh mặc định
                 movie.PicturePath = await SaveImageAsync(movie.PictureUpload) ?? "/images/no-image.jpg";
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
@@ -90,6 +88,7 @@ namespace _31241027390_PhamBaoNgoc.Controllers
             ViewData["GenreID"] = new SelectList(_context.Genres, "ID", "Name", movie.GenreID);
             return View(movie);
         }
+
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -108,8 +107,6 @@ namespace _31241027390_PhamBaoNgoc.Controllers
         }
 
         // POST: Movies/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Movie movie)
@@ -181,6 +178,42 @@ namespace _31241027390_PhamBaoNgoc.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Movies/AddToCart/5
+        public ActionResult AddToCart(int id)
+        {
+            // Kiểm tra Id movie tồn tại hay không
+            var movie = _context.Movies.Where(x => x.ID == id).FirstOrDefault();
+            if (movie == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var hoaDon = HttpContext.Session.Get<HoaDon>("HoaDon");
+            if (hoaDon == null)
+            {
+                hoaDon = new HoaDon { ChiTietHoaDons = new List<ChiTietHoaDon>() };
+            }
+
+            // Kiểm tra sản phẩm đã có trong giỏ chưa
+            var chiTietHoaDon = hoaDon.ChiTietHoaDons.Where(x => x.MaMovie == id).FirstOrDefault();
+            if (chiTietHoaDon == null)
+            {
+                chiTietHoaDon = new ChiTietHoaDon();
+                chiTietHoaDon.MaMovie = id;
+                chiTietHoaDon.MovieObj = movie;
+                chiTietHoaDon.SoLuong = 1;
+                hoaDon.ChiTietHoaDons.Add(chiTietHoaDon);
+            }
+            else
+            {
+                chiTietHoaDon.SoLuong++;
+            }
+
+            hoaDon.TongTien = hoaDon.ChiTietHoaDons.Sum(x => x.SoLuong * x.MovieObj.Price);
+            HttpContext.Session.Set<HoaDon>("HoaDon", hoaDon);
+            return View(hoaDon);
         }
 
         private bool MovieExists(int id)

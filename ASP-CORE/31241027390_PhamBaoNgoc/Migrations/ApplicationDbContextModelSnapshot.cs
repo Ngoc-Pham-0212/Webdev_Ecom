@@ -224,6 +224,32 @@ namespace _31241027390_PhamBaoNgoc.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.ChiTietHoaDon", b =>
+                {
+                    b.Property<int>("MaChiTietHoaDon")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaChiTietHoaDon"));
+
+                    b.Property<int>("MaHoaDon")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaMovie")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.HasKey("MaChiTietHoaDon");
+
+                    b.HasIndex("MaHoaDon");
+
+                    b.HasIndex("MaMovie");
+
+                    b.ToTable("ChiTietHoaDons");
+                });
+
             modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.Genre", b =>
                 {
                     b.Property<int>("ID")
@@ -240,6 +266,28 @@ namespace _31241027390_PhamBaoNgoc.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.HoaDon", b =>
+                {
+                    b.Property<int>("MaHoaDon")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaHoaDon"));
+
+                    b.Property<int?>("MaKhachHang")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("NgayLap")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TongTien")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("MaHoaDon");
+
+                    b.ToTable("HoaDons");
                 });
 
             modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.Movie", b =>
@@ -336,6 +384,25 @@ namespace _31241027390_PhamBaoNgoc.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.ChiTietHoaDon", b =>
+                {
+                    b.HasOne("_31241027390_PhamBaoNgoc.Models.HoaDon", "HoaDonObj")
+                        .WithMany("ChiTietHoaDons")
+                        .HasForeignKey("MaHoaDon")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("_31241027390_PhamBaoNgoc.Models.Movie", "MovieObj")
+                        .WithMany()
+                        .HasForeignKey("MaMovie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HoaDonObj");
+
+                    b.Navigation("MovieObj");
+                });
+
             modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.Movie", b =>
                 {
                     b.HasOne("_31241027390_PhamBaoNgoc.Models.Genre", "GenreObj")
@@ -348,6 +415,11 @@ namespace _31241027390_PhamBaoNgoc.Migrations
             modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.Genre", b =>
                 {
                     b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("_31241027390_PhamBaoNgoc.Models.HoaDon", b =>
+                {
+                    b.Navigation("ChiTietHoaDons");
                 });
 #pragma warning restore 612, 618
         }
