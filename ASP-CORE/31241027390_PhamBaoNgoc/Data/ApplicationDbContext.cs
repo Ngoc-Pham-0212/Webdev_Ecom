@@ -7,5 +7,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 {
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Genre> Genres { get; set; }
-   
+    public DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+    public DbSet<HoaDon> HoaDons { get; set; }
 }

@@ -1,77 +1,28 @@
 @model IEnumerable<_31241027390_PhamBaoNgoc.Models.Movie>
 
-@{
-    ViewData["Title"] = "Index";
+{
+ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Summary)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GenreObj)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PicturePath)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreObj.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rated)
-            </td>
-            <td>
+<h2>31241027390 - Phạm Bảo Ngọc"</h2>
+    <div class="row grid-demo">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
                 <img src="@item.PicturePath" style="width: 200px;" />
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <p>@Html.DisplayNameFor(model => model.Title):
+                    @Html.DisplayFor(modelItem => item.Title)</p>
+                    <p>@Html.DisplayNameFor(model => model.Rated):
+                        @Html.DisplayFor(modelItem => item.Rated)</p>
+                        <p>@Html.DisplayNameFor(model => model.Price):
+                            @Html.DisplayFor(modelItem => item.Price)</p>
+                            <p>@Html.DisplayNameFor(model => model.Summary):
+                                @Html.DisplayFor(modelItem => item.Summary)</p>
+                                <p>@Html.DisplayNameFor(model => model.ReleaseDate):
+                                    @item.ReleaseDate.ToString("dd/MM/yyyy")</p>
+                                    <p>@Html.DisplayNameFor(model => model.Genre):
+                                        @Html.DisplayFor(modelItem => item.GenreObj.Name)</p>
+                                        <a class="btn btn-primary" asp-action="AddToCart" asp-routeid="@item.ID">Mua</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
