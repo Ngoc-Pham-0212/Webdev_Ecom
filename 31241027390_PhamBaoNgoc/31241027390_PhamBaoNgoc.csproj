@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-_31241027390_PhamBaoNgoc-b2a35b11-ff3a-4c7d-88c7-4093fb496a30</UserSecretsId>
     <RootNamespace>_31241027390_PhamBaoNgoc</RootNamespace>
@@ -16,9 +16,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.15" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.15" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.15" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.*" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.15" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.*" />
   </ItemGroup>
 
 </Project>
