@@ -64,7 +64,7 @@
                 @Html.DisplayFor(modelItem => item.Rated)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PicturePath)
+                <img src="@item.PicturePath" style="width: 200px;" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
