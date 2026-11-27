@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using _31241027390_PhamBaoNgoc.Models;
 namespace _31241027390_PhamBaoNgoc.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
