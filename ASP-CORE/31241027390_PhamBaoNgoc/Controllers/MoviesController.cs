@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,15 +14,16 @@ namespace _31241027390_PhamBaoNgoc.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _env;
-
-        public MoviesController(ApplicationDbContext context, IWebHostEnvironment env)
+        private readonly IConfiguration _config;
+        public MoviesController(ApplicationDbContext context, IWebHostEnvironment env,
+        IConfiguration config)
         {
             _context = context;
             _env = env;
+            _config = config;
         }
-
+        private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _env;
         // Lưu file ảnh vào wwwroot/images, trả về đường dẫn để lưu trong CSDL
         private async Task<string> SaveImageAsync(IFormFile file)
         {
@@ -229,6 +231,71 @@ namespace _31241027390_PhamBaoNgoc.Controllers
             x.MovieObj.Price);
             HttpContext.Session.Set<HoaDon>("HoaDon", hoaDon);
             return View("AddToCart", hoaDon);
+        }
+        // GET: Movies/Checkout
+        public ActionResult Checkout()
+        {
+            return View(new ShippingDetail());
+        }
+
+        // POST: Movies/Checkout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Checkout(ShippingDetail detail)
+        {
+            var hoaDon = HttpContext.Session.Get<HoaDon>("HoaDon");
+            if (hoaDon == null || hoaDon.ChiTietHoaDons.Count == 0)
+            {
+                ModelState.AddModelError("", "Sorry, your cart is empty!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                // Lưu đơn hàng vào CSDL trên Somee
+                var order = new HoaDon
+                {
+                    NgayLap = DateTime.Now,
+                    TongTien = hoaDon.TongTien
+                };
+
+                foreach (var ct in hoaDon.ChiTietHoaDons)
+                {
+                    order.ChiTietHoaDons.Add(new ChiTietHoaDon
+                    {
+                        MaMovie = ct.MaMovie,
+                        SoLuong = ct.SoLuong
+                    });
+                }
+
+                _context.HoaDons.Add(order);
+                _context.ShippingDetails.Add(detail);
+                await _context.SaveChangesAsync();
+
+                // Soạn nội dung email (HtmlEncode để tránh chèn mã HTML)
+                Func<string, string> enc = System.Net.WebUtility.HtmlEncode;
+                StringBuilder body = new StringBuilder()
+                    .AppendLine("<p>A new order has been submitted</p><hr />")
+                    .AppendLine("<p>Items:</p><ul>");
+
+                foreach (var ct in hoaDon.ChiTietHoaDons)
+                {
+                    var subtotal = ct.MovieObj.Price * ct.SoLuong;
+                    body.AppendLine($"<li>{ct.SoLuong} x {enc(ct.MovieObj.Title)} (subtotal: {subtotal:N0})</li>");
+                }
+
+                body.AppendLine("</ul>")
+                    .AppendLine($"<p>Total order value: {hoaDon.TongTien:N0}</p><hr />")
+                    .AppendLine($"<p>Ship to:<br />{enc(detail.Name)}<br />{enc(detail.Address)}<br />{enc(detail.Mobile)}</p>");
+
+                var gmail = _config["Email:Address"];
+                var appPassword = _config["Email:AppPassword"];
+                await EmailServiceNew.SendMailGoogleSmtp(gmail, detail.Email, "New order submitted!", body.ToString(), gmail, appPassword);
+
+                HttpContext.Session.Remove("HoaDon");
+                return View("CheckoutCompleted");
+            }
+
+            return View(detail);
         }
         private bool MovieExists(int id)
         {

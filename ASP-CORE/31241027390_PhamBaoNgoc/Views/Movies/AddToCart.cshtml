@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "Giỏ hàng";
 }
+
 <h2>Your cart</h2>
 <table id="cartTable" class="table">
     <thead>
         <tr>
-            <th>Số lượng</th>
+            <th class="text-center">Số lượng</th>
             <th>Sản phẩm</th>
             <th class="text-end">Giá</th>
             <th class="text-end">Thành tiền</th>
@@ -14,29 +15,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var hoaDonChiTiet in Model.ChiTietHoaDons)
+        @if (Model != null && Model.ChiTietHoaDons != null)
         {
-            <tr>
-                <td class="text-center">@hoaDonChiTiet.SoLuong</td>
-                <td class="text-start">@hoaDonChiTiet.MovieObj.Title</td>
-                <td class="text-end">@hoaDonChiTiet.MovieObj.Price.ToString("N0")</td>
-                <td class="text-end">@((hoaDonChiTiet.SoLuong *
-                    hoaDonChiTiet.MovieObj.Price).ToString("N0"))</td>
+            @foreach (var hoaDonChiTiet in Model.ChiTietHoaDons)
+            {
+                <tr>
+                    <td class="text-center">@hoaDonChiTiet.SoLuong</td>
+                    <td class="text-start">@hoaDonChiTiet.MovieObj.Title</td>
+                    <td class="text-end">@hoaDonChiTiet.MovieObj.Price.ToString("N0")</td>
+                    <td class="text-end">@((hoaDonChiTiet.SoLuong * hoaDonChiTiet.MovieObj.Price).ToString("N0"))</td>
                     <td>
-                        <a class="btn btn-sm btn-warning" asp-action="RemoveFromCart"
-                           asproute-maMovies="@hoaDonChiTiet.MaMovie">Remove</a>
+                        <a class="btn btn-sm btn-warning" asp-controller="Movies" asp-action="RemoveFromCart" asp-route-maMovies="@hoaDonChiTiet.MaMovie">Remove</a>
                     </td>
                 </tr>
             }
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3" class="text-end">Total:</td>
-                <td class="text-end">@Model.TongTien.ToString("N0")</td>
-            </tr>
-        </tfoot>
-    </table>
-    <div class="text-center">
-        <a class="btn btn-primary" asp-action="Index">Continue shopping</a>
-        <a class="btn btn-primary" asp-action="Checkout">Checkout now</a>
-    </div>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-end"><strong>Total:</strong></td>
+            <td class="text-end"><strong>@(Model?.TongTien.ToString("N0") ?? "0")</strong></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-controller="Movies" asp-action="Index">Continue shopping</a>
+    <a class="btn btn-success" asp-controller="Movies" asp-action="Checkout">Checkout now</a>
+</div>

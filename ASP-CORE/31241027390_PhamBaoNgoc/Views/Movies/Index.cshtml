@@ -21,7 +21,7 @@ ViewData["Title"] = "Index";
                                     @item.ReleaseDate.ToString("dd/MM/yyyy")</p>
                                     <p>@Html.DisplayNameFor(model => model.Genre):
                                         @Html.DisplayFor(modelItem => item.GenreObj.Name)</p>
-                                        <a class="btn btn-primary" asp-action="AddToCart" asp-routeid="@item.ID">Mua</a>
+                                        <a class="btn btn-primary" asp-action="AddToCart" asp-route-id="@item.ID">Mua</a>
                                     </div>
                                 }
                             </div>
