@@ -1,20 +1,17 @@
-using Newtonsoft.Json;
-namespace MSSV_HoVaTen.Extension;
+using System.Text.Json;
 
-public static class SessionExtensions
+namespace _31241027390_PhamBaoNgoc.Extension;
+
+public static class SessionExtension
 {
     public static void Set<T>(this ISession session, string key, T value)
     {
-        session.SetString(key, JsonConvert.SerializeObject(value, Formatting.Indented,
-        new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        }));
+        session.SetString(key, JsonSerializer.Serialize(value));
     }
+
     public static T Get<T>(this ISession session, string key)
     {
         var value = session.GetString(key);
-        return value == null ? Activator.CreateInstance<T>() :
-        JsonConvert.DeserializeObject<T>(value);
+        return value == null ? default : JsonSerializer.Deserialize<T>(value);
     }
 }

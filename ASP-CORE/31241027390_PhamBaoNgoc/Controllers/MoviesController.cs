@@ -216,6 +216,20 @@ namespace _31241027390_PhamBaoNgoc.Controllers
             return View(hoaDon);
         }
 
+        public ActionResult RemoveFromCart(int maMovies)
+        {
+            var hoaDon = HttpContext.Session.Get<HoaDon>("HoaDon");
+            var chiTietHoaDon = hoaDon.ChiTietHoaDons.Where(x => x.MaMovie ==
+            maMovies).FirstOrDefault();
+            if (chiTietHoaDon != null)
+            {
+                hoaDon.ChiTietHoaDons.Remove(chiTietHoaDon);
+            }
+            hoaDon.TongTien = hoaDon.ChiTietHoaDons.Sum(x => x.SoLuong *
+            x.MovieObj.Price);
+            HttpContext.Session.Set<HoaDon>("HoaDon", hoaDon);
+            return View("AddToCart", hoaDon);
+        }
         private bool MovieExists(int id)
         {
             return _context.Movies.Any(e => e.ID == id);
