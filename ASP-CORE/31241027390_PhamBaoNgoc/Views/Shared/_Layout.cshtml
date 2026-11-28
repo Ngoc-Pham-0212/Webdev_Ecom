@@ -1,51 +1,77 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using _31241027390_PhamBaoNgoc.Extension
+@using _31241027390_PhamBaoNgoc.Models
+
+@{
+    var cart = Context.Session.Get<HoaDon>("HoaDon");
+    int soLuong = cart?.ChiTietHoaDons?.Sum(x => x.SoLuong) ?? 0;
+    decimal tongTien = cart?.TongTien ?? 0;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - _31241027390_PhamBaoNgoc</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - CineStore | Cửa Hàng Phim Bản Quyền</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/_31241027390_PhamBaoNgoc.styles.css" asp-append-version="true" />
 </head>
-<body>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">_31241027390_PhamBaoNgoc</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-warning" asp-controller="Movies" asp-action="Index">
+                    🎬 CineStore
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-controller="Movies" asp-action="Index">Cửa Hàng Phim</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-controller="Genres" asp-action="Index">Thể Loại</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Movies" asp-action="AddToCart">Giỏ Hàng</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <div class="d-flex align-items-center text-white me-3 my-2 my-lg-0">
+                        @await Html.PartialAsync("_LoginPartial")
+                    </div>
+                    <div>
+                        <a class="btn btn-outline-warning btn-sm fw-semibold text-wrap" asp-controller="Movies"
+                           asp-action="AddToCart">
+                            🛒 Giỏ hàng (@soLuong) • @tongTien.ToString("N0") đ
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container my-4 flex-grow-1">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - _31241027390_PhamBaoNgoc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="bg-dark text-light py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-1 fw-semibold">CineStore - Hệ Thống Phân Phối Phim & Vé Trực Tuyến</p>
+            <small class="text-secondary">Thực hiện bởi: Phạm Bảo Ngọc (MSSV: 31241027390) &copy; 2026</small>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

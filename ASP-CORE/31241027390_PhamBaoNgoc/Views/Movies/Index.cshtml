@@ -1,24 +1,48 @@
 @model IEnumerable<_31241027390_PhamBaoNgoc.Models.Movie>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách phim";
 }
 
-<h2>31241027390 - Phạm Bảo Ngọc</h2>
+<!-- Banner Cửa hàng -->
+<div class="p-4 p-md-5 mb-4 rounded-3 bg-dark text-white shadow-sm">
+    <div class="col-lg-8 px-0">
+        <h1 class="display-6 fw-bold text-warning">Kho Phim Bản Quyền Chất Lượng Cao</h1>
+        <p class="lead my-3">Khám phá những bom tấn điện ảnh mới nhất thuộc đa dạng thể loại. Đặt mua nhanh chóng, nhận mã kích hoạt và hóa đơn điện tử ngay qua Email.</p>
+        <span class="badge bg-secondary">SVTH: Phạm Bảo Ngọc - 31241027390</span>
+    </div>
+</div>
 
-<div class="row grid-demo">
+<!-- Lưới sản phẩm Responsive -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     @foreach (var item in Model)
     {
-        <div class="col-md-4 mb-4">
-            <img src="@item.PicturePath" style="width: 200px; height: 280px; object-fit: cover;" alt="@item.Title" />
-            <p class="mt-2">@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(modelItem => item.Title)</p>
-            <p>@Html.DisplayNameFor(model => model.Rated): @Html.DisplayFor(modelItem => item.Rated)</p>
-            <p>@Html.DisplayNameFor(model => model.Price): @Html.DisplayFor(modelItem => item.Price)</p>
-            <p>@Html.DisplayNameFor(model => model.Summary): @Html.DisplayFor(modelItem => item.Summary)</p>
-            <p>@Html.DisplayNameFor(model => model.ReleaseDate): @item.ReleaseDate.ToString("dd/MM/yyyy")</p>
-            <p>@Html.DisplayNameFor(model => model.Genre): @Html.DisplayFor(modelItem => item.GenreObj.Name)</p>
-            
-            <a class="btn btn-primary" asp-controller="Movies" asp-action="AddToCart" asp-route-id="@item.ID">Mua</a>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="position-relative">
+                    <img src="@item.PicturePath" class="card-img-top" alt="@item.Title"
+                         style="height: 360px; object-fit: cover; width: 100%;" />
+                    <span class="badge bg-primary position-absolute top-0 end-0 m-2 px-3 py-2">
+                        @(item.GenreObj?.Name ?? item.Genre)
+                    </span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-dark">@item.Title</h5>
+                    <div class="mb-2 text-muted small">
+                        <span>Khởi chiếu: @item.ReleaseDate.ToString("dd/MM/yyyy")</span> •
+                        <span>Đánh giá: ⭐ @item.Rated/5</span>
+                    </div>
+                    <p class="card-text text-secondary flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                        @item.Summary
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                        <span class="fs-5 fw-bold text-danger">@item.Price.ToString("N0") đ</span>
+                        <a class="btn btn-primary px-4 fw-semibold" asp-controller="Movies" asp-action="AddToCart" asp-route-id="@item.ID">
+                            🛒 Mua ngay
+                        </a>
+                    </div>
+                </div>
             </div>
+        </div>
     }
 </div>

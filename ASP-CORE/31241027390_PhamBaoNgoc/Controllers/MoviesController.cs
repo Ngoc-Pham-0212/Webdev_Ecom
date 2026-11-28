@@ -15,15 +15,16 @@ namespace _31241027390_PhamBaoNgoc.Controllers
     public class MoviesController : Controller
     {
         private readonly IConfiguration _config;
-        public MoviesController(ApplicationDbContext context, IWebHostEnvironment env,
-        IConfiguration config)
+        private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _env;
+
+        public MoviesController(ApplicationDbContext context, IWebHostEnvironment env, IConfiguration config)
         {
             _context = context;
             _env = env;
             _config = config;
         }
-        private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _env;
+
         // Lưu file ảnh vào wwwroot/images, trả về đường dẫn để lưu trong CSDL
         private async Task<string> SaveImageAsync(IFormFile file)
         {
@@ -182,56 +183,61 @@ namespace _31241027390_PhamBaoNgoc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Movies/AddToCart/5
-        public ActionResult AddToCart(int id)
+        // GET: Movies/AddToCart/5 hoặc Movies/AddToCart
+        public async Task<IActionResult> AddToCart(int? id)
         {
-            // Kiểm tra Id movie tồn tại hay không
-            var movie = _context.Movies.Where(x => x.ID == id).FirstOrDefault();
-            if (movie == null)
+            // 1. Lấy giỏ hàng hiện tại từ Session ("HoaDon")
+            var hoaDon = HttpContext.Session.Get<HoaDon>("HoaDon") ?? new HoaDon
             {
-                return RedirectToAction("Index");
+                ChiTietHoaDons = new List<ChiTietHoaDon>()
+            };
+
+            // 2. Nếu có truyền id phim (bấm nút "Mua ngay"), thì thêm phim vào giỏ
+            if (id.HasValue && id.Value > 0)
+            {
+                var movie = await _context.Movies.FindAsync(id.Value);
+                if (movie != null)
+                {
+                    var chiTiet = hoaDon.ChiTietHoaDons.FirstOrDefault(c => c.MaMovie == id.Value);
+                    if (chiTiet != null)
+                    {
+                        chiTiet.SoLuong++;
+                    }
+                    else
+                    {
+                        hoaDon.ChiTietHoaDons.Add(new ChiTietHoaDon
+                        {
+                            MaMovie = movie.ID,
+                            MovieObj = movie,
+                            SoLuong = 1
+                        });
+                    }
+
+                    hoaDon.TongTien = hoaDon.ChiTietHoaDons.Sum(c => c.SoLuong * (c.MovieObj?.Price ?? 0));
+                    HttpContext.Session.Set("HoaDon", hoaDon);
+                }
             }
 
-            var hoaDon = HttpContext.Session.Get<HoaDon>("HoaDon");
-            if (hoaDon == null)
-            {
-                hoaDon = new HoaDon { ChiTietHoaDons = new List<ChiTietHoaDon>() };
-            }
-
-            // Kiểm tra sản phẩm đã có trong giỏ chưa
-            var chiTietHoaDon = hoaDon.ChiTietHoaDons.Where(x => x.MaMovie == id).FirstOrDefault();
-            if (chiTietHoaDon == null)
-            {
-                chiTietHoaDon = new ChiTietHoaDon();
-                chiTietHoaDon.MaMovie = id;
-                chiTietHoaDon.MovieObj = movie;
-                chiTietHoaDon.SoLuong = 1;
-                hoaDon.ChiTietHoaDons.Add(chiTietHoaDon);
-            }
-            else
-            {
-                chiTietHoaDon.SoLuong++;
-            }
-
-            hoaDon.TongTien = hoaDon.ChiTietHoaDons.Sum(x => x.SoLuong * x.MovieObj.Price);
-            HttpContext.Session.Set<HoaDon>("HoaDon", hoaDon);
+            // 3. Trả về View AddToCart để xem giỏ hàng
             return View(hoaDon);
         }
 
         public ActionResult RemoveFromCart(int maMovies)
         {
             var hoaDon = HttpContext.Session.Get<HoaDon>("HoaDon");
-            var chiTietHoaDon = hoaDon.ChiTietHoaDons.Where(x => x.MaMovie ==
-            maMovies).FirstOrDefault();
-            if (chiTietHoaDon != null)
+            if (hoaDon != null && hoaDon.ChiTietHoaDons != null)
             {
-                hoaDon.ChiTietHoaDons.Remove(chiTietHoaDon);
+                var chiTietHoaDon = hoaDon.ChiTietHoaDons.FirstOrDefault(x => x.MaMovie == maMovies);
+                if (chiTietHoaDon != null)
+                {
+                    hoaDon.ChiTietHoaDons.Remove(chiTietHoaDon);
+                }
+                hoaDon.TongTien = hoaDon.ChiTietHoaDons.Sum(x => x.SoLuong * (x.MovieObj?.Price ?? 0));
+                HttpContext.Session.Set("HoaDon", hoaDon);
             }
-            hoaDon.TongTien = hoaDon.ChiTietHoaDons.Sum(x => x.SoLuong *
-            x.MovieObj.Price);
-            HttpContext.Session.Set<HoaDon>("HoaDon", hoaDon);
-            return View("AddToCart", hoaDon);
+            return View("AddToCart", hoaDon ?? new HoaDon());
         }
+
         // GET: Movies/Checkout
         public ActionResult Checkout()
         {
@@ -297,6 +303,7 @@ namespace _31241027390_PhamBaoNgoc.Controllers
 
             return View(detail);
         }
+
         private bool MovieExists(int id)
         {
             return _context.Movies.Any(e => e.ID == id);
